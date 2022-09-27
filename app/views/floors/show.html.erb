@@ -2,17 +2,42 @@
 <p><strong>floor number: </strong><%= @floor.number_of_floor %></p>
 <p><strong>floor id: </strong><%= @floor.id %></p>
 
-<%
-=begin%>
- <%= @floor.user_details if @floor.user_details%> 
-<%
-=end%>
+<%count=0%>
+<%@floor.user_details.each do |car|%>
+    <%count+=1%>
+<%end%>
+<%="This floor has #{count} car park"%>
+</br>
+<button><%= link_to 'back to all floor', floors_path %></button>
+
+
  
 
 
-<%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <%
 =begin%>
+   <p><%= car.client_name%></p>
  <%= link_to 'Delete', floor_path,data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%> 
+ <%= @floor.user_details if @floor.user_details%>  
 <%
 =end%>
-<%= link_to 'All floor', floors_path %>

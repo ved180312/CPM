@@ -1,0 +1,65 @@
+
+<h3>all booking</h3>
+<head>
+  <style>
+         table, th, td {
+            border: 1px solid black;
+            font-family: "Times New Roman", Times, serif;
+         }      
+  </style>
+</head>  
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th>client_name</th>
+      <th>email</th>
+      <th>car_number</th>
+      <th>car_name</th>
+      <th>in_time</th>
+      <th>out_time</th>
+      <th>price</th>
+      <th>floor</th>
+      <th colspan="4"> links </th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+    <% @ud.each do |user| %>
+      <tr>
+        <td><%= user.client_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.car_number%></td>
+        <td><%= user.car_color %></td>
+        <td><%= user.in_time %></td>
+        <td><%= user.out_time %></td>
+        <td><%= user.price %></td>
+        <%
+=begin%>
+ <td><%= user.floor_id %></td 
+<%
+=end%>
+        <td><%= user.floor.number_of_floor if user.floor %></td> 
+
+
+          <td><%= link_to 'Show', user_detail_path(user) %></td>
+          <% if  current_user.admin %>
+            <td><%= link_to 'Delete', user_detail_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></td>
+            <td><%= link_to 'Edit', edit_user_detail_path(user) %></td> 
+         <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</body>
+
+<%
+=begin%>
+ <p>
+  <%= link_to 'Create new users ', new_user_path %></br>
+  <%= link_to 'return to user prog', users_path %>
+</p> 
+<%
+=end%>

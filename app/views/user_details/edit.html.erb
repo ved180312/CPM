@@ -1,0 +1,60 @@
+<h1>Edit parking booking</h1>
+
+<% if @ud.errors.any? %>
+  <h2>The following errors prevented the user from being saved</h2>
+  <ul>
+    <% @ud.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= form_with(model: @ud, local: true) do |f| %>
+      <p> 
+        <%= f.label :client_name %><br/> 
+        <%= f.text_field :client_name,Placeholder: "enter name" %>
+      </p>
+      <p> 
+        <%= f.label :email %><br/> 
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",Placeholder: "enter email"%>
+      </p> 
+
+      <p> 
+        <%= f.label :car_number %><br/> 
+        <%= f.text_field :car_number,Placeholder: "enter car number" %>
+      </p>
+      <p> 
+        <%= f.label :car_color %><br/> 
+        <%= f.text_field :car_color,Placeholder: "enter car color" %>
+      </p>
+    <p> 
+        <%= f.label :in_time %><br/> 
+        <%= f.time_field :in_time,Placeholder: "enter time"  ,value: "%H:%M",
+      min: 'hh:mm:ss',
+      max: 'hh:mm:ss'%>
+      </p>
+        <p> 
+        <%= f.label :out_time %><br/> 
+        <%= f.time_field :out_time,Placeholder: "enter time" ,value: "%H:%M",
+      min: 'hh:mm:ss',
+      max: 'hh:mm:ss'%>
+      </p>
+           <p> 
+        <%= f.label :price %><br/> 
+        <%= f.text_field :price,Placeholder: "enter price" %>
+      </p>
+
+       <p> 
+        <%= f.label :floor_id %><br/> 
+        <%= f.number_field :floor_id,Placeholder: "enter floor number" %>
+      </p>
+
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
+||
+<%= link_to 'return to all booling', user_details_path %>
+||

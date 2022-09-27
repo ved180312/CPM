@@ -1,0 +1,39 @@
+
+<h3> All Floor</h3>
+<table>
+  <thead>
+    <tr>
+      <th>floor number</th>
+      <th colspan="3"> links </th>
+    </tr>
+
+  </thead>
+   <tbody>
+    <% @floor.each do |floor| %>
+      <tr>
+        <td><%= floor.number_of_floor %></td>
+        <td><%= link_to 'Show', floor_path(floor) %></td>
+          <%
+=begin%>
+ <td><%= link_to 'Edit', edit_floor_path(floor) %></td>   
+<%
+=end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<ol>
+<li><%= link_to 'create floor', new_floor_path %></li>
+</ol>
+
+
+<%
+=begin%>
+ 
+
+  <td><%= link_to 'Delete', floor_path(floor),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></td>
+          <td><%= link_to 'Edit', edit_floor_path(floor) %></td>  
+<%
+=end%>

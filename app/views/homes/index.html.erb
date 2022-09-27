@@ -1,0 +1,64 @@
+<%
+=begin%>
+ 
+<head>
+  <style>
+         table, th, td {
+            border: 1px solid black;
+            font-family: "Times New Roman", Times, serif;
+         }      
+  </style>
+</head>  
+
+
+<body>
+<table>
+  <thead>
+  </tr>
+      <th style="width:100px">Name</th>
+      <th style="width:250px">Email</th>
+    
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= current_user.name if current_user %></td>
+        <td><%= current_user.email  if current_user%></td>
+      </tr>
+    
+    
+  </tbody>
+</table>
+<%= link_to 'user_etail', user_details_path %> 
+<%
+=end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<strong>Name:</strong> <%= current_user.name if current_user %></br>
+<strong>Email:</strong> <%= current_user.email  if current_user%>
+
+<ol>
+<li><%= link_to 'see floors', floors_path %></li>
+<li><%= link_to 'apply for booking', new_user_detail_path %></li>
+<li><%= link_to 'see all booking', user_details_path %></li>
+</ol>

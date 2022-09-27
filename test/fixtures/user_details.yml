@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client_name: MyString
+  car_color: MyString
+  car_number: MyString
+  in_time: 2022-09-23 01:16:15
+  out_time: 2022-09-23 01:16:15
+  price: 9.99
+
+two:
+  client_name: MyString
+  car_color: MyString
+  car_number: MyString
+  in_time: 2022-09-23 01:16:15
+  out_time: 2022-09-23 01:16:15
+  price: 9.99

@@ -1,0 +1,16 @@
+current directory: /home/dell/Desktop/123456789/project@parking/vendor/bundle/ruby/3.0.0/gems/debug-1.6.2/ext/debug
+/home/dell/.rvm/rubies/ruby-3.0.0/bin/ruby -I /home/dell/.rvm/rubies/ruby-3.0.0/lib/ruby/3.0.0 -r ./siteconf20220922-359346-xr643u.rb extconf.rb
+creating Makefile
+
+current directory: /home/dell/Desktop/123456789/project@parking/vendor/bundle/ruby/3.0.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR=" clean
+
+current directory: /home/dell/Desktop/123456789/project@parking/vendor/bundle/ruby/3.0.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR="
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/dell/Desktop/123456789/project@parking/vendor/bundle/ruby/3.0.0/gems/debug-1.6.2/ext/debug
+make "DESTDIR=" install
+/usr/bin/install -m 0755 debug.so ./.gem.20220922-359346-2nrz4w/debug

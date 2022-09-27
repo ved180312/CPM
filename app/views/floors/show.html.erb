@@ -1,0 +1,18 @@
+
+<p><strong>floor number: </strong><%= @floor.number_of_floor %></p>
+<p><strong>floor id: </strong><%= @floor.id %></p>
+
+<%
+=begin%>
+ <%= @floor.user_details if @floor.user_details%> 
+<%
+=end%>
+ 
+
+
+<%
+=begin%>
+ <%= link_to 'Delete', floor_path,data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%> 
+<%
+=end%>
+<%= link_to 'All floor', floors_path %>

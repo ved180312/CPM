@@ -7,6 +7,7 @@ class UserDetailMailer < ApplicationMailer
   #
   def booking_confirmation(user_detail)
     @ud= user_detail
-    mail to:  user_detail.email, subject: "booked..."
+  
+    mail to:  user_detail.email, subject: "Booking Confirmation"
   end
 end

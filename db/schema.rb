@@ -10,24 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_23_161054) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_10_013217) do
   create_table "floors", force: :cascade do |t|
     t.integer "number_of_floor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_details", force: :cascade do |t|
-    t.string "client_name"
-    t.string "email"
-    t.string "car_color"
-    t.string "car_number"
-    t.time "in_time"
-    t.time "out_time"
-    t.decimal "price"
+  create_table "slots", force: :cascade do |t|
+    t.integer "slot_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "floor_id"
+  end
+
+  create_table "user_details", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "car_color"
+    t.string "car_number"
+    t.datetime "in_time"
+    t.datetime "out_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "slot_id"
   end
 
   create_table "users", force: :cascade do |t|

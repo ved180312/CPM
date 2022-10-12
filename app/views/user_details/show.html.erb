@@ -1,18 +1,30 @@
-<p><strong>client_name: </strong><%= @ud.client_name %></p>
-<p><strong>email: </strong><%= @ud.email%></p>
-<p><strong>car_number: </strong><%= @ud.car_number %></p>
-<p><strong>car_color: </strong><%= @ud.car_color %></p>
-<p><strong>in_time: </strong><%= @ud.in_time %></p>
-<p><strong>out_time: </strong><%= @ud.out_time %></p>
-<p><strong>price: </strong><%= @ud.price%></p>
-<p><strong>floor: </strong><%= @ud.floor_id%></p>
-<%= link_to "click here and go", new_user_registration_path %> 
+<div class= "col-lg-6 mx-lg-auto">
+<div class="card shadow">
+<div class="card-header">
+<h2 class="card-title">Your Details</h2>
+</div>
+<div class="card-body">
 
+<p><strong>Name: </strong><%= @ud.name %></p>
+<p><strong>Email: </strong><%= @ud.email%></p>
+<p><strong>Car Number: </strong><%= @ud.car_number %></p>
+<p><strong>Car Color: </strong><%= @ud.car_color %></p>
+<p><strong>In Time: </strong><%= @ud.in_time %></p>
+<p><strong>Out Time: </strong><%= @ud.out_time %></p>
+<p><strong>Slot Id: </strong><%= @ud.slot_id%></p>
+<p><strong>Floor Id: </strong><%= @ud.slot.floor_id%></p>
+<button><%= link_to "back", new_user_registration_path %></button>
+
+
+</div>
+</div>
+</div>
 
 <%
 =begin%>
+ <%= @ud.floor.number_of_floor if @ud.floor %>
  <%= link_to 'Delete', user_detail_path,data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
 <%= link_to 'return to userdetail', user_details_path %> 
-<%= @ud.floor.number_of_floor if @ud.floor %>
+<%= @ud.floor.number_of_floor if @ud.floor %> 
 <%
 =end%>

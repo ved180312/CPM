@@ -1,0 +1,35 @@
+<h3> All Slot</h3>
+<head>
+  <style>
+  .card{
+  padding: 10px;
+  margin: 15px;
+  height: inline-block;
+  box-shadow: 0px 0px 3px 2px green;
+  width: fit-content;
+  display: inline-block;
+  }
+
+p{
+  line-height: 20px;
+  }
+.btn-field{
+  display: flex;
+ }
+  </style>
+</head>
+<body>
+    <div class="wrap">
+      <% @slot.each do |slot| %>
+        <div class="card">
+            <p><strong>Slot Number: </strong><%= slot.slot_number%></p>
+            <p><strong>Slot Id: </strong><%= slot.id%></p>
+            <p><strong>Floor Id: </strong><%= slot.floor_id%></p>
+            <%= link_to 'Show', slot_path(slot) %>
+            <%= link_to 'Delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+            <%= link_to 'Edit', edit_slot_path(slot) %>          
+        </div>
+      <% end %>
+      <button><%= link_to 'back', root_path %></button>
+    </div>
+</body>

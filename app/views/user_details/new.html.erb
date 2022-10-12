@@ -1,60 +1,69 @@
-<h1>Apply for booking</h1>
+<div class= "col-lg-6 mx-lg-auto">
+<div class="card shadow">
+<div class="card-header" style="background-color:DodgerBlue;">
+<h2 class="card-title" >Apply For Booking</h2>
+</div>
+<div class="card-body">
 
- <% if @ud.errors.any? %>
+<% if @ud.errors.any? %>
   <h2>The following errors prevented the user from being saved</h2>
   <ul>
-    <% @ud.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+  <% @ud.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
 <% end %> 
+<%= form_with scope: :user_detail, url: user_details_path, local: true do |f| %>
+  <p> 
+    <%= f.label :name, class: 'mb-2'  %>
+    <%= f.text_field :name,Placeholder: "Enter name", autofocus: true, class: "form-control form-control-lg" %>
+  </p>
 
-     
-    <%= form_with scope: :user_detail, url: user_details_path, local: true do |f| %>
-      <p> 
-        <%= f.label :client_name %><br/> 
-        <%= f.text_field :client_name,Placeholder: "enter name" %>
-      </p>
-      <p> 
-        <%= f.label :email %><br/> 
-         <%= f.email_field :email, autofocus: true, autocomplete: "email" , Placeholder: "enter email"%>
-      </p> 
+  <p> 
+    <%= f.label :email, class: 'mb-2'  %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" , Placeholder: "Enter email", class: "form-control form-control-lg"%>
+  </p> 
 
-      <p> 
-        <%= f.label :car_number %><br/> 
-        <%= f.text_field :car_number,Placeholder: "enter car number" %>
-      </p>
-      <p> 
-        <%= f.label :car_color %><br/> 
-        <%= f.text_field :car_color,Placeholder: "enter car color" %>
-      </p>
-    <p> 
-        <%= f.label :in_time %><br/> 
-        <%= f.time_field :in_time,Placeholder: "enter time", value: "%H:%M",
-      min: 'hh:mm:ss',
-      max: 'hh:mm:ss' %>
-      </p>
-           <p> 
-        <%= f.label :out_time %><br/> 
-        <%= f.time_field :out_time,Placeholder: "enter time", value: "%H:%M",
-      min: 'hh:mm:ss',
-      max: 'hh:mm:ss' %>
-      </p>
-      <p> 
-        <%= f.label :price %><br/> 
-        <%= f.text_field :price,Placeholder: "enter price" %>
-      </p>
-      
-        <p> 
-        <%= f.label :floor_id %><br/> 
-        <%= f.number_field :floor_id,Placeholder: "enter floor number" %>
-      </p>
-      
+  <p> 
+    <%= f.label :car_number, class: 'mb-2'  %>
+    <%= f.text_field :car_number,Placeholder: "Enter car number", autofocus: true, class: "form-control form-control-lg" %>
+  </p>
 
-      <p>
-        <%= f.submit %> 
-      </p>
-    <% end %>
+  <p> 
+    <%= f.label :car_color, class: 'mb-2'  %>
+    <%= f.text_field :car_color,Placeholder: "Enter car color", autofocus: true, class: "form-control form-control-lg" %>
+  </p>
+  <p> 
+    <%= f.label :in_time, class: 'mb-2'  %>
+    <%= f.datetime_field :in_time,Placeholder: "Enter time", autofocus: true, class: "form-control form-control-lg"%>
+  </p>
+
+  <p> 
+    <%= f.label :out_time, class: 'mb-2'  %>
+    <%= f.datetime_field :out_time,Placeholder: "Enter time", autofocus: true, class: "form-control form-control-lg"%>
+  </p>
+   <p> 
+        <%= f.label :slot_id, "Slot Number", class: 'mb-2' %>
+        <%= f.number_field :slot_id ,value: params[:id], class: "form-control form-control-lg"%>
+  </p> 
+
+  <div class="form-group mb-2 mt-2">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+  </div>
+  
+  <p>
+    <%= f.submit 'submit', class: "btn btn-primary" %> 
+  </p>
+<% end %>
+
+
+
+
+</div>
+</div>
+</div>
+
 
 
 

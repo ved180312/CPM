@@ -8,13 +8,13 @@
   </ul>
 <% end %>
 <%= form_with(model: @floor, local: true) do |f| %>
-      <p> 
-        <%= f.label :number_of_floor %><br/> 
-        <%= f.number_field :number_of_floor,Placeholder: "enter name" %>
-      </p>
+  <p> 
+    <%= f.label :number_of_floor %><br/> 
+    <%= f.number_field :number_of_floor,Placeholder: "Enter Name" %>
+  </p>
 
-      <p>
-        <%= f.submit %>
-      </p>
+  <p>
+    <%= f.submit %>
+  </p>
 
 <% end %>

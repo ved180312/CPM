@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  #  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  respond_with resource, location: after_sign_up_path_for(resource) 
 
   # GET /resource/sign_up
   # def new
@@ -43,7 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -60,4 +61,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def after_sign_up_path_for(resource) 
+    after_sign_in_path_for(resource) if is_navigational_format? 
+  end 
 end
+

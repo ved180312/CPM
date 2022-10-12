@@ -1,57 +1,69 @@
-
-<h3>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Bookings~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</h3>
 <head>
   <style>
-         table, th, td {
-            border: 1px solid black;
-            font-family: "Times New Roman", Times, serif;
-         }      
+
+  .card{
+  padding: 10px;
+  margin: 15px;
+  height: inline-block;
+  box-shadow: 0px 0px 3px 2px green;
+  width: fit-content;
+  display: inline-block;
+  /* float:left; */
+  }
+
+  p{
+  line-height: 20px;
+  }
+  .btn-field{
+  display: flex;
+  }
+
   </style>
 </head>  
 <body>
-
-  <table>
-    <thead>
-      <tr>
-        <th>client_name</th>
-        <th>email</th>
-        <th>car_number</th>
-        <th>car_color</th>
-        <th>in_time</th>
-        <th>out_time</th>
-        <th>price</th>
-        <th>floor</th>
-        <th colspan="4"> links </th>
-      </tr>
-
-    </thead>
-
-    <tbody>
-      <% @ud.each do |user| %>
+  <div class="wrap">
+    <h3>Booking</h3>
+    <% @ud.each do |user| %>
+      <div class="card">
         <% if  current_user.admin || ((user.email == current_user.email) && !current_user.admin) %>
-
-          <tr>
-            <td><%= user.client_name %></td>
-            <td><%= user.email %></td>
-            <td><%= user.car_number%></td>
-            <td><%= user.car_color %></td>
-            <td><%= user.in_time %></td>
-            <td><%= user.out_time %></td>
-            <td><%= user.price %></td>
-            <td><%= user.floor.number_of_floor %></td> 
-            <td><%= link_to 'Show', user_detail_path(user) %></td>
-            <% if  current_user.admin %>
-              <td><%= link_to 'Delete', user_detail_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></td>
-              <td><%= link_to 'Edit', edit_user_detail_path(user) %></td> 
-            <% end %>
-          </tr>
+          <p><strong>Name: </strong><%= user.name %></p>
+          <p><strong>Email: </strong><%= user.email%></p>
+          <button><%= link_to 'Show', user_detail_path(user) %></button>
+          <% if  current_user.admin %>
+              <%= link_to 'Delete', user_detail_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>|
+              <%= link_to 'Edit', edit_user_detail_path(user) %>
+          <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
+      </div>
+    <% end %>
+    <button><%= link_to 'back', root_path %></button>
+  </div>
 </body>
 
-<button><%= link_to 'back', root_path %></button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <%
 =begin%>

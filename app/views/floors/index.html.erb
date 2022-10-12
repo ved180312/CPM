@@ -1,27 +1,43 @@
 
 <h3> All Floor</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Floor Number</th>
-          <th>Booked slot</th>
-          <th colspan="3"> links </th>
-        </tr>
 
-      </thead>
-      <tbody>
-        <% @floor.each do |floor| %>
-          <tr>
-            <td><%= floor.number_of_floor %></td>
-            <td><%= "This floor has #{floor.user_details.count} slot booked"%></td>
-            <td><%= link_to 'Show', floor_path(floor) %></td>
+<head>
+  <style>
+  .card{
+  padding: 10px;
+  margin: 15px;
+  height: inline-block;
+  box-shadow: 0px 0px 3px 2px green;
+  width: fit-content;
+  display: inline-block;
+}
 
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+p{
+  line-height: 20px;
+}
+.btn-field{
+  display: flex;
+}
+  </style>
+</head>  
+<body>
+    <div class="wrap">
+      <% @floor.each do |floor| %>
+        <div class="card">
+            <p><strong>Floor Number: </strong><%= floor.number_of_floor %></p>
+            <p><strong>Floor Id: </strong><%= floor.id %></p> 
+            <%= "This floor has #{floor.slots.count} slots"%></td> 
+            <button><%= link_to 'Show', floor_path(floor) %></button></td>
+        </div>
+      <% end %>
+      <button><%= link_to 'back', root_path %></button>
+      <% if current_user.admin%>
+      <button><%= link_to 'Add Floor', new_floor_path %></button>
+      <%end%>
+    </div>
+  
+</body>
 
-<button><%= link_to 'back', root_path %></button>
 
 
 
@@ -30,12 +46,13 @@
 
 
 
-
-
-
-
-
-
+<%
+=begin%>
+ <% @user_detail.floor.each do |car|%>
+            <li> <%= link_to 'apply for booking', new_user_detail_path(car)%> </li>
+            <%end%> 
+<%
+=end%>
 
 
 
@@ -52,7 +69,7 @@
 =begin%>
 
 <ul>
-<li><%= link_to 'create floor', new_floor_path %></li>
+# <li><%= link_to 'create floor', new_floor_path %></li>
 </ul>
  
 

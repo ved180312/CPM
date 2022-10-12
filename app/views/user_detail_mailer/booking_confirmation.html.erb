@@ -1,11 +1,13 @@
 
 
- congratulation <%= @ud.client_name %> parking slot successfully booked. now you can park your car.
-
+Congratulation <%= @ud.name %> Parking slot successfully booked.You can park your car.
 
 <ul>
-<li><strong>floor: <strong><%= @ud.floor_id %></br></li>
-<li><strong>price</strong><%= @ud.price %></br></li>
+<% m= @ud.out_time %>
+<% n= @ud.in_time %>
+<li><strong>Slot Id: <strong><%= @ud.slot_id %></li>
+<li><strong>Floor: <strong><%= @ud.slot.floor_id%></li>
+<li><strong>Price: <strong><%= (((m-n)/1.hours).round)*100%></li>
 </ul>
 
 Thankyou

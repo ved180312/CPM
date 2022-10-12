@@ -100,5 +100,9 @@ module Loofah
         deprecate_constant :WhiteListSanitizer
       end
     end
+
+    def is_navigational_format? 
+      Devise.navigational_formats.include?(request_format) 
+    end 
   end
 end

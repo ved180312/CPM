@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+  # get 'slots/index'
+  # get 'slots/edit'
+  get 'slots/new/:id', to: 'slots#new', as: 'new_slot'
+  # get 'slots/show'
   # get 'floors/index'
   # get 'floors/new'
   # get 'floors/edit'
   # get 'floors/view'
   # get 'user_details/index'
   # get 'user_details/show'
-  # get 'user_details/new'
+  get 'user_details/new/:id', to: 'user_details#new', as: 'new_user_details'
   # get 'user_details/edit'
   # get 'homes/index'
 
@@ -14,10 +18,14 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  root to: "homes#index"
+  root to: 'homes#index'
 
-  resources :user_details
+
+  resources :slots, except: %i[new]
+  resources :user_details, except: %i[new]
   resources :floors
+
+  
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

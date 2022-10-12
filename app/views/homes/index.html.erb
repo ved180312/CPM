@@ -1,3 +1,8 @@
+
+<strong>Name:</strong> <%= current_user.name if current_user %></br>
+<strong>Email:</strong> <%= current_user.email  if current_user%>
+
+
 <%
 =begin%>
  
@@ -54,16 +59,39 @@
 
 
 
-<strong>Name:</strong> <%= current_user.name if current_user %></br>
-<strong>Email:</strong> <%= current_user.email  if current_user%>
 
-<ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%
+=begin%>
+ <ol>
 <li><%= link_to 'see floors', floors_path %></li>
-<li><%= link_to 'apply for booking', new_user_detail_path %></li>
 
 <% if !current_user.admin %>
     <li><%= link_to 'see your booking', user_details_path %></li>
 <%else%>
     <li><%= link_to 'see all booking', user_details_path %></li>
 <%end%>
-</ol>
+</ol> 
+<%
+=end%>

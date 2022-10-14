@@ -1,5 +1,5 @@
 
-<h3> All Slot</h3>
+<h3> All Slots</h3>
 <head>
   <style>
   .card{
@@ -25,6 +25,13 @@ p{
       <div class="card">
         <p><strong>Slot Number: </strong><%= slot.slot_number%></p>
         <p><strong>Slot  Id: </strong><%= slot.id%></p>
+
+        <% if slot.user_detail%>
+          <p><strong>Booking Status: </strong><%= "Booked"%></p>
+        <%else%>
+          <p><strong>Booking Status: </strong><%= "Empty"%></p>
+        <%end%>
+
         <%= link_to 'Show', slot_path(slot) %>
         <% if current_user.admin%>
           <%= link_to 'Delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
@@ -33,7 +40,7 @@ p{
         <button><%= link_to 'Apply For Booking', new_user_details_path(slot.id) %></button>
       </div>
     <% end %>
-    <button><%= link_to 'back', root_path %></button>
+  
     <% if current_user.admin? %>
       <button><%= link_to 'Add Slot', new_slot_path(params[:id]) %></button>
     <%end%>

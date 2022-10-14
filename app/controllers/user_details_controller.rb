@@ -11,11 +11,9 @@ class UserDetailsController < ApplicationController
     @ud = UserDetail.all
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @ud.update(ud_params)
@@ -27,18 +25,19 @@ class UserDetailsController < ApplicationController
   end
 
   def create
-    @ud = UserDetail.new(ud_params)
-    if @ud.email == current_user.email
-      if @ud.save
-        UserDetailMailer.booking_confirmation(@ud).deliver_later
-        flash[:notice] = 'Successfully applied'
-        redirect_to @ud
-      else
-        render 'new', status: :unprocessable_entity
-      end
-    else
-      flash[:notice] = 'Mail not match'
-      render 'new', status: :unprocessable_entity
+    begin
+      CreateUserDetailService.new(params[:user_detail][:id]).call
+      @ud = UserDetail.new(ud_params)
+        if @ud.save && @ud.name == current_user.name
+          UserDetailMailer.booking_confirmation(@ud, current_user).deliver_later
+          flash[:notice] = 'Successfully applied'
+          redirect_to @ud
+        else
+          render 'new', status: :unprocessable_entity
+        end
+    rescue => exception
+      flash[:notice] = exception.message
+      redirect_to floors_path
     end
   end
 

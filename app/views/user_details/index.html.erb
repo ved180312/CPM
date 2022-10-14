@@ -24,11 +24,18 @@
   <div class="wrap">
     <h3>Booking</h3>
     <% @ud.each do |user| %>
+      
+        <% if  current_user.admin || user.name == current_user.name %>
       <div class="card">
-        <% if  current_user.admin || ((user.email == current_user.email) && !current_user.admin) %>
           <p><strong>Name: </strong><%= user.name %></p>
-          <p><strong>Email: </strong><%= user.email%></p>
+          <p><strong>Car Number: </strong><%= user.car_number %></p>
+          <p><strong>Car Color: </strong><%= user.car_color %></p>
+          <p><strong>In Time: </strong><%= user.in_time %></p>
+          <p><strong>Out Time: </strong><%= user.out_time %></p>
+          <p><strong>Slot Id: </strong><%= user.slot_id%></p>
+           <p><strong>Floor Id: </strong><%= user.slot.floor_id%></p>
           <button><%= link_to 'Show', user_detail_path(user) %></button>
+
           <% if  current_user.admin %>
               <%= link_to 'Delete', user_detail_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>|
               <%= link_to 'Edit', edit_user_detail_path(user) %>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # get 'slots/index'
   # get 'slots/edit'
@@ -13,19 +15,15 @@ Rails.application.routes.draw do
   # get 'user_details/edit'
   # get 'homes/index'
 
-  
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
 
   root to: 'homes#index'
 
-
   resources :slots, except: %i[new]
   resources :user_details, except: %i[new]
   resources :floors
-
-  
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

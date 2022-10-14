@@ -1,3 +1,19 @@
 <p><strong>Slot Number: </strong><%= @slot.slot_number%></p>
 <p><strong>Slot id: </strong><%= @slot.id%></p>
 <p><strong>floor id: </strong><%= @slot.floor_id%></p>
+
+
+
+<%
+=begin%>
+ 
+    <%count=0%>
+    <% @slot.user_detail.each do |t| %>
+        <%count+=1%>
+        
+        <%="this slots has #{count} booked"%><p>
+    <%end%>
+    <%=count%>  
+<%
+=end%>
+

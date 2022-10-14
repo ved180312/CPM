@@ -19,10 +19,7 @@
     <%= f.label :name, class: 'mb-2'  %>
     <%= f.text_field :name,Placeholder: "Enter name", autofocus: true, class: "form-control form-control-lg" %>
   </p>
-  <p> 
-    <%= f.label :email, class: 'mb-2'  %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",Placeholder: "Enter email", class: "form-control form-control-lg"%>
-  </p> 
+
 
   <p> 
     <%= f.label :car_number, class: 'mb-2'  %>
@@ -45,8 +42,8 @@
   </p>
 
   <p> 
-        <%= f.label :slot_id, "Slot Number", class: 'mb-2' %>
-        <%= f.number_field :slot_id ,value: params[:id], class: "form-control form-control-lg"%>
+        
+    <%= f.hidden_field :slot_id ,value: params[:id], class: "form-control form-control-lg"%>
   </p> 
 
   <p>

@@ -25,6 +25,13 @@ p{
             <p><strong>Slot Number: </strong><%= slot.slot_number%></p>
             <p><strong>Slot Id: </strong><%= slot.id%></p>
             <p><strong>Floor Id: </strong><%= slot.floor_id%></p>
+            
+            <% if slot.user_detail%>
+              <p><strong>Booking Status: </strong><%= "Booked"%></p>
+            <%else%>
+              <p><strong>Booking Status: </strong><%= "Empty"%></p>
+            <%end%>
+
             <%= link_to 'Show', slot_path(slot) %>
             <%= link_to 'Delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
             <%= link_to 'Edit', edit_slot_path(slot) %>          

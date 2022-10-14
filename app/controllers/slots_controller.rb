@@ -12,11 +12,9 @@ class SlotsController < ApplicationController
     @slot = Slot.all
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @slot.update(slot_params)

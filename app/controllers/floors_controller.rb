@@ -17,8 +17,7 @@ class FloorsController < ApplicationController
     @floor = Floor.find(params[:id]).slots
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @floor.update(floor_params)

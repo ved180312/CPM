@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# class
 class SlotsController < ApplicationController
   before_action :check_user, only: %i[destroy edit new]
   before_action :set_slot, only: %i[edit update show destroy]

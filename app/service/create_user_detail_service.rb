@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUserDetailService
   def initialize(id)
     @id = id
@@ -5,8 +7,6 @@ class CreateUserDetailService
 
   def call
     @slot = Slot.find(@id)
-    if @slot.user_detail
-    raise "Already Booked" 
-    end
+    raise 'Already Booked' if @slot.user_detail
   end
 end

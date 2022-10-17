@@ -25,20 +25,18 @@ class UserDetailsController < ApplicationController
   end
 
   def create
-    begin
-      CreateUserDetailService.new(params[:user_detail][:id]).call
-      @ud = UserDetail.new(ud_params)
-        if @ud.save && @ud.name == current_user.name
-          UserDetailMailer.booking_confirmation(@ud, current_user).deliver_later
-          flash[:notice] = 'Successfully applied'
-          redirect_to @ud
-        else
-          render 'new', status: :unprocessable_entity
-        end
-    rescue => exception
-      flash[:notice] = exception.message
-      redirect_to floors_path
+    CreateUserDetailService.new(params[:user_detail][:id]).call
+    @ud = UserDetail.new(ud_params)
+    if @ud.save && @ud.name == current_user.name
+      UserDetailMailer.booking_confirmation(@ud, current_user).deliver_later
+      flash[:notice] = 'Successfully applied'
+      redirect_to @ud
+    else
+      render 'new', status: :unprocessable_entity
     end
+  rescue StandardError => e
+    flash[:notice] = e.message
+    redirect_to floors_path
   end
 
   def destroy

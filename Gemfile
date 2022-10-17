@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.0'
+gem 'better_errors'
 gem 'devise'
 gem 'email_validator'
 # gem 'cancancan'

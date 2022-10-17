@@ -7,5 +7,6 @@ class UserDetail < ApplicationRecord
 
   validates :in_time, :out_time, presence: true
 
-  validates :car_number, presence: true, uniqueness: { case_sensitive: false }, length: { maximum:10 }
+  validates :car_number, uniqueness: true, presence: true,
+                         format: { with: /\A([A-Z]{2})+[0-9]{2}+[A-Z]{2}+[0-9]{4}\z/i }
 end

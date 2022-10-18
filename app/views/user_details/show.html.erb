@@ -12,13 +12,17 @@
 <p><strong>Out Time: </strong><%= @ud.out_time %></p>
 <p><strong>Slot Id: </strong><%= @ud.slot_id%></p>
 <p><strong>Floor : </strong><%= @ud.slot.floor_id%></p>
+<%if @ud.confirm.nil? %>
+   <p><strong>Status : </strong><%= "Pending"%><p>
+<%else%>   
+  <p><strong>Status : </strong><%= "Booked"%><p>
+<%end%>
 
-<ul>
+
 <% m= @ud.out_time %>
 <% n= @ud.in_time %>
-<li><strong>Bill Amount: <strong><%= (((m-n)/1.hours).round)*100%></li>
-</ul> 
-<button><%= link_to "back", new_user_registration_path %></button>
+<strong>Bill Amount: <strong><%= (((m-n)/1.hours).round)*100%>
+
 
 
 
@@ -28,6 +32,8 @@
 
 <%
 =begin%>
+<button><%= link_to "back", new_user_registration_path %></button>
+
  <%= @ud.floor.number_of_floor if @ud.floor %>
  <%= link_to 'Delete', user_detail_path,data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
 <%= link_to 'return to userdetail', user_details_path %> 

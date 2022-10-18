@@ -7,6 +7,8 @@ ruby '3.0.0'
 gem 'better_errors'
 gem 'devise'
 gem 'email_validator'
+
+# gem "letter_opener"
 # gem 'cancancan'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'

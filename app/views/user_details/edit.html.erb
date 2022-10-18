@@ -1,7 +1,13 @@
 <div class= "col-lg-6 mx-lg-auto">
 <div class="card shadow">
 <div class="card-header" style="background-color:DodgerBlue;">
+<% if @ud.confirm.nil?%>
+<h2 class="card-title">Pending Request</h2>
+<% else%>
 <h2 class="card-title">Edit Details</h2>
+<%end%>
+
+
 </div>
 <div class="card-body">
 
@@ -15,6 +21,18 @@
 <% end %>
 
 <%= form_with(model: @ud, local: true) do |f| %>
+
+  <% if @ud.confirm.nil?%>
+   <p> 
+    <%= f.hidden_field :confirm, Placeholder: "Enter Comment ", value: "approved", autofocus: true, class: "form-control form-control-lg"%>
+  </p>
+
+  <p>
+    <%= f.submit 'Confirm', class: "btn btn-primary"%>
+  </p>
+ 
+  <%else%>
+
   <p> 
     <%= f.label :name, class: 'mb-2'  %>
     <%= f.text_field :name,Placeholder: "Enter name", autofocus: true, class: "form-control form-control-lg" %>
@@ -45,12 +63,17 @@
     <%= f.number_field :slot_id , class: "form-control form-control-lg"%>
   </p> 
 
+  <p> 
+    <%= f.label :confirm, class: 'mb-2'  %>
+    <%= f.text_field :confirm, Placeholder: "Enter Comment ", autofocus: true, class: "form-control form-control-lg"%>
+  </p>
+  
+
   <p>
     <%= f.submit 'submit', class: "btn btn-primary"%>
   </p>
+  <%end%>
 <% end %>
-<button><%= link_to 'back', user_details_path %></button>
-
 
 </div>
 </div>

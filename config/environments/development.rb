@@ -2,6 +2,7 @@
 
 require 'active_support/core_ext/integer/time'
 
+# application
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -82,4 +83,6 @@ Rails.application.configure do
   }
   config.exceptions_app = routes
   config.action_mailer.perform_deliveries = true
+
+
 end

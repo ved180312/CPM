@@ -2,6 +2,48 @@
 <strong>Email:</strong> <%= current_user.email  if current_user%>
 
 
+<%if current_user.admin %>
+<head>
+  <style>
+         table, th, td {
+            border: 1px solid black;
+            font-family: "Times New Roman", Times, serif;
+         }      
+  </style>
+</head>  
+
+<body>
+<table>
+  <thead>
+  </tr>
+      <th style="width:100px">Name</th>
+      <th style="width:250px">Email</th>
+      <th style="width:350px">admin</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.each do |u| %>
+      <tr>
+        <td><%= u.name %></td>
+        <td><%= u.email %></td>
+        <% if u.admin==true %>
+          <td><%= "Admin"%></td>
+        <%else%>
+           <td><%= "Customer" %></td>
+        <%end%>
+      </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+</body>
+<%end%>
+
+
+
+
+
 <%
 =begin%>
  

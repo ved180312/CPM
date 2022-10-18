@@ -17,8 +17,9 @@ class UserDetailsController < ApplicationController
 
   def update
     if @ud.update(ud_params)
+      UserDetailMailer.booking_confirmation(@ud, current_user).deliver_later
       flash[:notice] = 'Details Updated'
-      redirect_to @ud
+      redirect_to root_path
     else
       render 'edit', status: :unprocessable_entity
     end
@@ -47,7 +48,7 @@ class UserDetailsController < ApplicationController
   private
 
   def ud_params
-    params.require(:user_detail).permit(:name, :email, :car_color, :car_number, :in_time, :out_time, :slot_id)
+    params.require(:user_detail).permit(:name, :email, :car_color, :car_number, :in_time, :out_time, :slot_id, :confirm)
   end
 
   def set_ud

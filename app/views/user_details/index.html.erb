@@ -1,57 +1,63 @@
+
 <head>
   <style>
-
-  .card{
-  padding: 10px;
-  margin: 15px;
-  height: inline-block;
-  box-shadow: 0px 0px 3px 2px green;
-  width: fit-content;
-  display: inline-block;
-  /* float:left; */
-  }
-
-  p{
-  line-height: 20px;
-  }
-  .btn-field{
-  display: flex;
-  }
-
+         table, th, td {
+            border: 1px solid black;
+            font-family: "Times New Roman", Times, serif;
+         }      
   </style>
 </head>  
-<body>
-  <div class="wrap">
-    <h3>Booking</h3>
-    <% @ud.each do |user| %>
-      
-        <% if  current_user.admin || user.name == current_user.name %>
-      <div class="card">
-          <p><strong>Name: </strong><%= user.name %></p>
-          <p><strong>Car Number: </strong><%= user.car_number %></p>
-          <p><strong>Car Color: </strong><%= user.car_color %></p>
-          <p><strong>In Time: </strong><%= user.in_time %></p>
-          <p><strong>Out Time: </strong><%= user.out_time %></p>
-          <p><strong>Slot Id: </strong><%= user.slot_id%></p>
-           <p><strong>Floor Id: </strong><%= user.slot.floor_id%></p>
-          <button><%= link_to 'Show', user_detail_path(user) %></button>
 
+<body>
+<table>
+  <thead>
+  </tr>
+      <th style="width:100px">Name</th>
+      <th style="width:250px">car_number</th>
+      <th style="width:350px">car_color</th>
+      <th style="width:450px">in_time</th>
+      <th style="width:450px">out_time</th>
+      <th style="width:350px">slot_id</th>
+      <th style="width:350px">floor</th>
+      <th style="width:350px">status</th>
+      <th style="width:auto" colspan= "3">Action</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    
+
+
+    <% @ud.each do |user| %>
+    <tr>
+        <% if  current_user.admin || user.name == current_user.name %>
+          <td><%= user.name %></td>
+          <td><%= user.car_number %></td>
+          <td><%= user.car_color %></td>
+          <td><%= user.in_time %></td>
+          <td><%= user.out_time %></td>
+          <td><%= user.slot_id%></td>
+          <td><%= user.slot.floor_id%></td>
+          <td> <%= user.confirm.nil? ? "Pending" : "Booked"%></td>
+          <td><button><%= link_to 'Show', user_detail_path(user) %></button>
           <% if  current_user.admin %>
-              <%= link_to 'Delete', user_detail_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>|
-              <%= link_to 'Edit', edit_user_detail_path(user) %>
+              <td><button><%= link_to 'Delete', user_detail_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button></td>
+              <% if user.confirm.nil?%>
+              
+                <td><button><%= link_to 'PendingRequest', edit_user_detail_path(user) %></button></td>
+              <%else%>
+                <td><button><%= link_to 'Edit', edit_user_detail_path(user) %></button></td>
+              <%end%>
           <% end %>
         <% end %>
-      </div>
+      </tr>
     <% end %>
-    <button><%= link_to 'back', root_path %></button>
-  </div>
+  
+    
+  </tbody>
+</table>
 </body>
-
-
-
-
-
-
 
 
 
@@ -75,6 +81,8 @@
 <%
 =begin%>
  <p>
+     <button><%= link_to 'back', root_path %></button>
+
   <%= link_to 'Create new users ', new_user_path %></br>
   <%= link_to 'return to user prog', users_path %>
 </p> 

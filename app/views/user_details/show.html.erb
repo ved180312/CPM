@@ -1,33 +1,26 @@
 <div class= "col-lg-6 mx-lg-auto">
-<div class="card shadow">
-<div class="card-header">
-<h2 class="card-title">Your Details</h2>
-</div>
-<div class="card-body">
-
-<p><strong>Name: </strong><%= @ud.name %></p>
-<p><strong>Car Number: </strong><%= @ud.car_number %></p>
-<p><strong>Car Color: </strong><%= @ud.car_color %></p>
-<p><strong>In Time: </strong><%= @ud.in_time %></p>
-<p><strong>Out Time: </strong><%= @ud.out_time %></p>
-<p><strong>Slot Id: </strong><%= @ud.slot_id%></p>
-<p><strong>Floor : </strong><%= @ud.slot.floor_id%></p>
-<%if @ud.confirm.nil? %>
-   <p><strong>Status : </strong><%= "Pending"%><p>
-<%else%>   
-  <p><strong>Status : </strong><%= "Booked"%><p>
-<%end%>
-
-
-<% m= @ud.out_time %>
-<% n= @ud.in_time %>
-<strong>Bill Amount: <strong><%= (((m-n)/1.hours).round)*100%>
-
-
-
-
-</div>
-</div>
+  <div class="card shadow">
+    <div class="card-header">
+    <h2 class="card-title">Your Details</h2>
+    </div>
+    <div class="card-body">
+      <p><strong>Name: </strong><%= @ud.name %></p>
+      <p><strong>Car Number: </strong><%= @ud.car_number %></p>
+      <p><strong>Car Color: </strong><%= @ud.car_color %></p>
+      <p><strong>In Time: </strong><%= @ud.in_time %></p>
+      <p><strong>Out Time: </strong><%= @ud.out_time %></p>
+      <p><strong>Slot Id: </strong><%= @ud.slot_id%></p>
+      <p><strong>Floor : </strong><%= @ud.slot.floor_id%></p>
+      <%if @ud.confirm.nil? %>
+        <p><strong>Status : </strong><%= "Pending"%><p>
+      <%else%>   
+        <p><strong>Status : </strong><%= "Booked"%><p>
+      <%end%>
+      <% m= @ud.out_time %>
+      <% n= @ud.in_time %>
+      <strong>Bill Amount: <strong><%= (((m-n)/1.hours).round)*100%>
+    </div>
+  </div>
 </div>
 
 <%

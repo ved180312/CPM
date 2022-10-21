@@ -1,80 +1,79 @@
-<div class= "col-lg-6 mx-lg-auto">
-<div class="card shadow">
-<div class="card-header" style="background-color:DodgerBlue;">
-<% if @ud.confirm.nil?%>
-<h2 class="card-title">Pending Request</h2>
-<% else%>
-<h2 class="card-title">Edit Details</h2>
-<%end%>
+<div class="card text-white bg-secondary mb-3" style="max-width: auto">
+  <div class= "col-lg-6 mx-lg-auto" style="margin: 50px; >
+    <div class="card shadow">
+      <div class="card-header bg-striped text-white">
+        <% if @ud.confirm.nil?%>
+          <h2 class="card-title">Pending Request</h2>
+        <% else%>
+          <h2 class="card-title">Edit Details</h2>
+        <%end%>    </div>
+      <div class="card-body bg-info text-white">
 
+        <% if @ud.errors.any? %>
+          <h2>The following errors prevented the user from being saved</h2>
+          <ul>
+            <% @ud.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        <% end %>
 
-</div>
-<div class="card-body">
+        <%= form_with(model: @ud, local: true) do |f| %>
 
-<% if @ud.errors.any? %>
-  <h2>The following errors prevented the user from being saved</h2>
-  <ul>
-    <% @ud.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
+          <% if @ud.confirm.nil?%>
+            <p> 
+              <%= f.hidden_field :confirm, value: "approved" %>
+              <%f.hidden_field :user_id, value: params[:id]%>
+            </p>
 
-<%= form_with(model: @ud, local: true) do |f| %>
+            <p>
+              <%= f.submit 'Confirm', class: "btn btn-primary"%>
+            </p>
+            
+          <%else%>
 
-  <% if @ud.confirm.nil?%>
-   <p> 
-    <%= f.hidden_field :confirm, Placeholder: "Enter Comment ", value: "approved", autofocus: true, class: "form-control form-control-lg"%>
-  </p>
+          <p> 
+            <%= f.label :name, class: 'mb-2'  %>
+            <%= f.text_field :name,Placeholder: "Enter name", autofocus: true, class: "form-control form-control-lg" %>
+          </p>
+          
+          <p> 
+            <%= f.label :car_number, class: 'mb-2'  %>
+            <%= f.text_field :car_number,Placeholder: "Enter car number", autofocus: true, class: "form-control form-control-lg" %>
+          </p>
 
-  <p>
-    <%= f.submit 'Confirm', class: "btn btn-primary"%>
-  </p>
- 
-  <%else%>
+          <p> 
+            <%= f.label :car_color, class: 'mb-2'  %>
+            <%= f.text_field :car_color,Placeholder: "Enter car color", autofocus: true, class: "form-control form-control-lg" %>
+          </p>
 
-  <p> 
-    <%= f.label :name, class: 'mb-2'  %>
-    <%= f.text_field :name,Placeholder: "Enter name", autofocus: true, class: "form-control form-control-lg" %>
-  </p>
-  
-  <p> 
-    <%= f.label :car_number, class: 'mb-2'  %>
-    <%= f.text_field :car_number,Placeholder: "Enter car number", autofocus: true, class: "form-control form-control-lg" %>
-  </p>
+          <p> 
+            <%= f.label :in_time, class: 'mb-2'  %>
+            <%= f.datetime_field :in_time,Placeholder: "Enter in time", autofocus: true, class: "form-control form-control-lg"%>
+          </p>
 
-  <p> 
-    <%= f.label :car_color, class: 'mb-2'  %>
-    <%= f.text_field :car_color,Placeholder: "Enter car color", autofocus: true, class: "form-control form-control-lg" %>
-  </p>
+          <p> 
+            <%= f.label :out_time, class: 'mb-2'  %>
+            <%= f.datetime_field :out_time,Placeholder: "Enter out time", autofocus: true, class: "form-control form-control-lg" %>
+          </p>
 
-  <p> 
-    <%= f.label :in_time, class: 'mb-2'  %>
-    <%= f.datetime_field :in_time,Placeholder: "Enter in time", autofocus: true, class: "form-control form-control-lg"%>
-  </p>
+          <p> 
+            <%= f.label :slot_id, class: 'mb-2' %>  
+            <%= f.number_field :slot_id , class: "form-control form-control-lg"%>
+          </p> 
 
-  <p> 
-    <%= f.label :out_time, class: 'mb-2'  %>
-    <%= f.datetime_field :out_time,Placeholder: "Enter out time", autofocus: true, class: "form-control form-control-lg" %>
-  </p>
+          <p> 
+            <%= f.label :confirm, class: 'mb-2'  %>
+            <%= f.text_field :confirm, Placeholder: "Enter Comment ", autofocus: true, class: "form-control form-control-lg"%>
+          </p>
+          
 
-  <p> 
-    <%= f.label :slot_id, class: 'mb-2' %>  
-    <%= f.number_field :slot_id , class: "form-control form-control-lg"%>
-  </p> 
-
-  <p> 
-    <%= f.label :confirm, class: 'mb-2'  %>
-    <%= f.text_field :confirm, Placeholder: "Enter Comment ", autofocus: true, class: "form-control form-control-lg"%>
-  </p>
-  
-
-  <p>
-    <%= f.submit 'submit', class: "btn btn-primary"%>
-  </p>
-  <%end%>
-<% end %>
-
-</div>
-</div>
+          <p>
+            <%= f.submit 'submit', class: "btn btn-primary"%>
+          </p>
+          <%end%>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

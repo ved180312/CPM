@@ -1,62 +1,45 @@
-
-<head>
-  <style>
-         table, th, td {
-            border: 1px solid black;
-            font-family: "Times New Roman", Times, serif;
-         }      
-  </style>
-</head>  
-
 <body>
-<table>
-  <thead>
-  </tr>
-      <th style="width:100px">Name</th>
-      <th style="width:250px">car_number</th>
-      <th style="width:350px">car_color</th>
-      <th style="width:450px">in_time</th>
-      <th style="width:450px">out_time</th>
-      <th style="width:350px">slot_id</th>
-      <th style="width:350px">floor</th>
-      <th style="width:350px">status</th>
-      <th style="width:auto" colspan= "3">Action</th>
-
-    </tr>
-  </thead>
-
-  <tbody>
-    
-
-
-    <% @ud.each do |user| %>
-    <tr>
-        <% if  current_user.admin || user.name == current_user.name %>
-          <td><%= user.name %></td>
-          <td><%= user.car_number %></td>
-          <td><%= user.car_color %></td>
-          <td><%= user.in_time %></td>
-          <td><%= user.out_time %></td>
-          <td><%= user.slot_id%></td>
-          <td><%= user.slot.floor_id%></td>
-          <td> <%= user.confirm.nil? ? "Pending" : "Booked"%></td>
-          <td><button><%= link_to 'Show', user_detail_path(user) %></button>
-          <% if  current_user.admin %>
-              <td><button><%= link_to 'Delete', user_detail_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button></td>
-              <% if user.confirm.nil?%>
-              
-                <td><button><%= link_to 'PendingRequest', edit_user_detail_path(user) %></button></td>
-              <%else%>
-                <td><button><%= link_to 'Edit', edit_user_detail_path(user) %></button></td>
-              <%end%>
-          <% end %>
-        <% end %>
+<table class="table table-success table-striped">
+    <thead class="table-dark">
       </tr>
-    <% end %>
-  
+        <th>Name</th>
+        <th>CarNumber</th>
+        <th>CarColor</th>
+        <th>In Time</th>
+        <th>Out Time </th>
+        <th>Slot_id</th>
+        <th>Floor</th>
+        <th>Status</th>
+        <th colspan= "3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
     
-  </tbody>
-</table>
+      <% @ud.each do |user| %>
+        <tr>
+          <% if  current_user.admin || user.name == current_user.name %>
+            <td><%= user.name %></td>
+            <td><%= user.car_number %></td>
+            <td><%= user.car_color %></td>
+            <td><%= user.in_time %></td>
+            <td><%= user.out_time %></td>
+            <td><%= user.slot_id%></td>
+            <td><%= user.slot.floor_id%></td>
+            <td> <%= user.confirm.nil? ? "Pending" : "Booked"%></td>
+            <td><button><%= link_to 'Show', user_detail_path(user) %></button>
+            <% if  current_user.admin %>
+                <td><button><%= link_to 'Delete', user_detail_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button></td>
+                <% if user.confirm.nil?%>
+                  <td><button><%= link_to 'PendingRequest', edit_user_detail_path(user.id) %></button></td>
+                <%else%>
+                  <td><button><%= link_to 'Edit', edit_user_detail_path(user) %></button></td>
+                <%end%>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </body>
 
 

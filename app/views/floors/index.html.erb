@@ -1,44 +1,26 @@
 
-<h3> All Floors</h3>
 
-<head>
-  <style>
-  .card{
-  padding: 10px;
-  margin: 15px;
-  height: inline-block;
-  box-shadow: 0px 0px 3px 2px green;
-  width: fit-content;
-  display: inline-block;
-}
-
-p{
-  line-height: 20px;
-}
-.btn-field{
-  display: flex;
-}
-  </style>
-</head>  
-<body>
-    <div class="wrap">
-      <% @floor.each do |floor| %>
-        <div class="card">
-            <p><strong>Floor Number: </strong><%= floor.number_of_floor %></p>
-            <p><strong>Floor Id: </strong><%= floor.id %></p> 
-            <%= "This floor has #{floor.slots.count} slots"%></td> 
-            <button><%= link_to 'Show', floor_path(floor) %></button></td>
-        </div>
-      <% end %>
-      <button><%= link_to 'back', root_path %></button>
-      <% if current_user.admin%>
-      <button><%= link_to 'Add Floor', new_floor_path %></button>
-      <%end%>
-    </div>
+<div class="row text-bg-light " style="max-width: auto ">
+  <% @floor.each do |floor| %>
   
-</body>
+    <div class="card" style="margin: 2px;" >
+      <div  class="card-header"><strong>Floor Number: </strong><%= floor.number_of_floor %></div>
+      <div class="card-body">
+        <p><strong>Floor Id: </strong><%= floor.id %></p> 
+        <%= "This floor has #{floor.slots.count} slots"%></td> 
+        <button><%= link_to 'Show', floor_path(floor) %></button></td>
+      </div>
+    </div>
+  <% end %>
+</div>  
+<button><%= link_to 'back', root_path %></button>
+<% if current_user.admin%>
+<button><%= link_to 'Add Floor', new_floor_path %></button>
+<%end%>
 
 
+
+ 
 
 
 

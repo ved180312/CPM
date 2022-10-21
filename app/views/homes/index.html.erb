@@ -3,26 +3,18 @@
 
 
 <%if current_user.admin %>
-<head>
-  <style>
-         table, th, td {
-            border: 1px solid black;
-            font-family: "Times New Roman", Times, serif;
-         }      
-  </style>
-</head>  
 
 <body>
-<table>
-  <thead>
+<table class="table table-bordered border-primary" >
+  <thead class="table-dark">
   </tr>
-      <th style="width:100px">Name</th>
-      <th style="width:250px">Email</th>
-      <th style="width:350px">admin</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">admin</th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="table-primary">
     <% @user.each do |u| %>
       <tr>
         <td><%= u.name %></td>

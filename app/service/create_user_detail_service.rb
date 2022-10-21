@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ud services
 class CreateUserDetailService
   def initialize(id)
     @id = id

@@ -1,18 +1,15 @@
-
-
 <%if @ud.confirm.nil? %>
    Hii <%= @ud.name %> your booking request has been sent to Admin. Wait till it is confirmed.
   <strong><p>Booking Panding....</p></strong>
-  
 <%else%>  
-Congratulation <%= @ud.name %> Parking slot successfully booked.You can park your car.
-<ul>
-<% m= @ud.out_time %>
-<% n= @ud.in_time %>
-<li><strong>Slot Id: <strong><%= @ud.slot_id %></li>
-<li><strong>Floor: <strong><%= @ud.slot.floor_id%></li>
-<li><strong>Price: <strong><%= (((m-n)/1.hours).round)*100%></li>
-</ul>
+  Congratulation <%= @ud.name %> Parking slot successfully booked.You can park your car.
+  <ul>
+    <% m= @ud.out_time %>
+    <% n= @ud.in_time %>
+    <li><strong>Slot Id: <strong><%= @ud.slot_id %></li>
+    <li><strong>Floor: <strong><%= @ud.slot.floor_id%></li>
+    <li><strong>Price: <strong><%= (((m-n)/1.hours).round)*100%></li>
+  </ul>
 <%end%>
 
 Thankyou

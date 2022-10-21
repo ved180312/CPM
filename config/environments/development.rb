@@ -77,12 +77,10 @@ Rails.application.configure do
     port: 587,
     domain: 'gmail.com',
     user_name: 'raj.tiwari1903',
-    password: 'gahmpzmxjwvhkugg',
+    password: 'nqfxpwfxyebjsxyt',
     authentication: 'plain',
     enable_starttls_auto: true
   }
   config.exceptions_app = routes
   config.action_mailer.perform_deliveries = true
-
-
 end

@@ -10,7 +10,7 @@ class CreateUserDetails < ActiveRecord::Migration[7.0]
       t.datetime :in_time
       t.datetime :out_time
       t.string :confirm
-      
+
       t.timestamps
     end
   end

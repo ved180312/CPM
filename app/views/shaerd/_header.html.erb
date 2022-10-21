@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark  text-white bg-dark" >
+  <a class="navbar-brand" href="#">CPM </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+
+        <li class="nav-item active">
+          <%= link_to "Home" ,root_path , class: "nav-link"%>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Apply Here
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'Floors', floors_path , class: "dropdown-item"%>
+          </div>
+        </li>
+
+        <% if !current_user.admin %>
+          <li class="nav-item active">
+            <%= link_to 'Your Booking', user_details_path, class: "nav-link"%>
+          </li>
+        <%else%>
+          <li class="nav-item active">
+            <%= link_to 'All Booking', user_details_path , class: "nav-link"%>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "Slot" ,slots_path , class: "nav-link"%>
+          </li>
+        <%end%>  
+
+        <li class="nav-item m-auto active">
+          <%=  link_to "Logout", destroy_user_session_path,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "nav-link" %>
+        </li>
+
+        <% else %>
+
+        <li class="nav-item active">
+          <%=  link_to "Sign up", new_user_registration_path , class: "nav-link"%>
+        </li>
+
+        <li class="nav-item active">
+          <%=  link_to "Login", new_user_session_path , class: "nav-link"%>
+        </li>
+        
+      <%end%>
+    </ul>
+  </div>
+</nav>
+
+

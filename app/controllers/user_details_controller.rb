@@ -17,7 +17,7 @@ class UserDetailsController < ApplicationController
 
   def update
     if @ud.update(ud_params)
-      UserDetailMailer.booking_confirmation(@ud, current_user).deliver_later
+      UserDetailMailer.booking_confirmation(@ud, User.find(params[:id])).deliver_later
       flash[:notice] = 'Details Updated'
       redirect_to root_path
     else

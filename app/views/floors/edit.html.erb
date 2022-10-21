@@ -7,14 +7,25 @@
     <% end %>
   </ul>
 <% end %>
-<%= form_with(model: @floor, local: true) do |f| %>
-  <p> 
-    <%= f.label :number_of_floor %><br/> 
-    <%= f.number_field :number_of_floor,Placeholder: "Enter Name" %>
-  </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
+<div class="card text-white bg-secondary mb-3" style="max-width: auto">
+  <div class= "col-lg-6 mx-lg-auto" style="margin: 50px; >
+    <div class="card shadow">
+      <div class="card-header bg-striped text-white">
+        <h2 class="card-title" >Edit Floor</h2>
+      </div>
+      <div class="card-body bg-info text-white">
+        <%= form_with(model: @floor, local: true) do |f| %>
+          <p> 
+            <%= f.label :number_of_floor, class: 'mb-2'    %><br/> 
+            <%= f.number_field :number_of_floor,Placeholder: "Enter Name", class: "form-control form-control-lg"  %>
+          </p>
 
-<% end %>
+          <p>
+        <%= f.submit 'submit', class: "btn btn-primary" %> 
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>  

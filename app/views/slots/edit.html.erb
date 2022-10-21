@@ -1,27 +1,44 @@
-<h2>Edit Slot</h2>
-<% if @slot.errors.any? %>
+
+<div class="card text-white bg-secondary mb-3" style="max-width: auto">
+  <% if @slot.errors.any? %>
   <h2>The following errors prevented the slot from being saved</h2>
   <ul>
     <% @slot.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
   </ul>
-<% end %>
-<%= form_with(model: @slot, local: true) do |f| %>
-      <p> 
-        <%= f.label :slot_number %><br/> 
-        <%= f.number_field :slot_number ,Placeholder: "Enter Slot" %>
-      </p>
-     <%
-=begin%>
- <p> 
-        <%= f.label :floor_id %><br/>
-        <%= f.number_field :floor_id, value: params[:id] %>
-    </p> 
-<%
-=end%>
+  <% end %>
+  <div class= "col-lg-6 mx-lg-auto" style="margin: 50px; >
+    <div class="card shadow">
+      <div class="card-header bg-striped text-white">
+        <h2 class="card-title" >Edit Slot</h2>
+      </div>
+      <div class="card-body bg-info text-white">
+        <%= form_with(model: @slot, local: true) do |f| %>
+          <p> 
+            <%= f.label :slot_number, class: 'mb-2'    %><br/> 
+            <%= f.number_field :slot_number ,Placeholder: "Enter Slot", class: "form-control form-control-lg"  %>
+          </p>
 
-      <p>
-        <%= f.submit %>
-      </p>
-<% end %>
+          <p>
+          <%= f.submit 'submit', class: "btn btn-primary" %> 
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

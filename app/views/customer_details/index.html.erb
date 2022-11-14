@@ -1,0 +1,75 @@
+<body>
+  <table class="table table-success table-striped">
+    <thead class="table-dark">
+      </tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>CarNumber</th>
+        <th>CarColor</th>
+        <th>Slot_id</th>
+        <th>Floor</th>
+        <th>Status</th>
+        <th colspan= "3">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ud.each do |custo| %>
+        <tr>
+          <% if  current_user.admin || custo.user.email == current_user.email %>
+            <td><%= custo.name %></td>
+            <td><%= custo.user.email %></td>
+            <td><%= custo.car_number %></td>
+            <td><%= custo.car_color %></td>
+            <td><%= custo.slot_id%></td>
+            <td><%= custo.slot.floor_id%></td>
+            <td> <%= custo.confirm.nil? ? "Pending" : "Booked"%></td>
+            <td><button><%= link_to 'Show', customer_detail_path(custo) %></button>
+            <% if  current_user.admin %>
+                <td><button><%= link_to 'Delete', customer_detail_path(custo),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button></td>
+                <% if custo.confirm.nil?%>
+                  <td><button><%= link_to 'PendingRequest', edit_customer_detail_path(custo.id) %></button></td>
+                <%else%>
+                  <td><button><%= link_to 'Edit', edit_customer_detail_path(custo) %></button></td>
+                <%end%>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%
+=begin%>
+ <p>
+     <button><%= link_to 'back', root_path %></button>
+
+  <%= link_to 'Create new users ', new_user_path %></br>
+  <%= link_to 'return to user prog', users_path %>
+</p> 
+<%
+=end%>
+   <%
+=begin%>
+ <td><%= user.floor_id %></td 
+<%
+=end%>

@@ -7,8 +7,8 @@
       <p><strong>Name: </strong><%= @ud.name %></p>
       <p><strong>Car Number: </strong><%= @ud.car_number %></p>
       <p><strong>Car Color: </strong><%= @ud.car_color %></p>
-      <p><strong>In Time: </strong><%= @ud.in_time %></p>
-      <p><strong>Out Time: </strong><%= @ud.out_time %></p>
+      <p><strong>In Time: </strong><%= @ud.in_time.strftime('%d/%m/%Y %H:%M') %></p>
+      <p><strong>Out Time: </strong><%= @ud.out_time.strftime('%d/%m/%Y %H:%M') %></p>
       <p><strong>Slot Id: </strong><%= @ud.slot_id%></p>
       <p><strong>Floor : </strong><%= @ud.slot.floor_id%></p>
       <%if @ud.confirm.nil? %>

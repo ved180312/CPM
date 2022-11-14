@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 # usermodel
-class UserDetail < ApplicationRecord
+class CustomerDetail < ApplicationRecord
   belongs_to :slot
+  belongs_to :user
 
   validates :name, :car_color, presence: true, length: { maximum: 30 }
 

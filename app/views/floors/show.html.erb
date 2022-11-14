@@ -1,50 +1,29 @@
-
 <h3> All Slots</h3>
-<head>
-  <style>
-  .card{
-  padding: 10px;
-  margin: 15px;
-  height: inline-block;
-  box-shadow: 0px 0px 3px 2px green;
-  width: fit-content;
-  display: inline-block;
-  }
-
-p{
-  line-height: 20px;
-  }
-.btn-field{
-  display: flex;
- }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <% @floor.each do |slot| %>
-      <div class="card">
-        <p><strong>Slot Number: </strong><%= slot.slot_number%></p>
+<div class="row text-bg-light " style="max-width: auto ">
+  <% @floor.each do |slot| %>
+    <div class="card" style="margin: 2px;" >
+      <div  class="card-header"><strong>Slot Number: </strong><%= slot.slot_number%></div>
+      <div class="card-body">      
         <p><strong>Slot  Id: </strong><%= slot.id%></p>
-        <% if slot.user_detail%>
+        <% if slot.customer_detail%>
           <p><strong>Booking Status: </strong><%= "Booked"%></p>
         <%else%>
           <p><strong>Booking Status: </strong><%= "Empty"%></p>
         <%end%>
-
         <%= link_to 'Show', slot_path(slot) %>
         <% if current_user.admin%>
           <%= link_to 'Delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
           <%= link_to 'Edit', edit_slot_path(slot) %>
         <%end%>  
-        <button><%= link_to 'Apply For Booking', new_user_details_path(slot.id) %></button>
+        <button><%= link_to 'Apply For Booking', new_customer_details_path(slot.id) %></button>
       </div>
-    <% end %>
-  
-    <% if current_user.admin? %>
-      <button><%= link_to 'Add Slot', new_slot_path(params[:id]) %></button>
-    <%end%>
-  </div>
-</body>
+    </div>
+  <% end %>
+</div>
+<% if current_user.admin? %>
+  <button><%= link_to 'Add Slot', new_slot_path(params[:id]) %></button>
+<%end%>
+
 
 
 

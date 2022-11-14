@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-class UserDetailsController < ApplicationController
+# customer controller
+class CustomerDetailsController < ApplicationController
   before_action :check_user, only: %i[destroy edit]
   before_action :set_ud, only: %i[edit update show destroy]
   def new
-    @ud = UserDetail.new
+    @ud = CustomerDetail.new
   end
 
   def index
-    @ud = UserDetail.all
+    @ud = CustomerDetail.all
   end
 
   def show; end
@@ -17,19 +18,19 @@ class UserDetailsController < ApplicationController
 
   def update
     if @ud.update(ud_params)
-      UserDetailMailer.booking_confirmation(@ud, User.find(params[:id])).deliver_later
+      UserDetailMailer.booking_confirmation(@ud, @ud, 'cust').deliver_later
       flash[:notice] = 'Details Updated'
-      redirect_to root_path
+      redirect_to customer_details_path
     else
       render 'edit', status: :unprocessable_entity
     end
   end
 
   def create
-    CreateUserDetailService.new(params[:user_detail][:id]).call
-    @ud = UserDetail.new(ud_params)
+    CreateCustomerDetailService.new(params[:customer_detail][:id]).call
+    @ud = CustomerDetail.new(ud_params)
     if @ud.save && @ud.name == current_user.name
-      UserDetailMailer.booking_confirmation(@ud, current_user).deliver_later
+      UserDetailMailer.booking_confirmation(@ud, current_user, 'user').deliver_later
       flash[:notice] = 'Successfully applied'
       redirect_to @ud
     else
@@ -42,19 +43,19 @@ class UserDetailsController < ApplicationController
 
   def destroy
     @ud.destroy
-    redirect_to user_details_path
+    redirect_to customer_details_path
   end
 
   private
 
   def ud_params
-    params.require(:user_detail).permit(:name, :email, :car_color, :car_number, :in_time, :out_time, :slot_id, :confirm)
+    params.require(:customer_detail).permit(:name, :car_color, :car_number, :in_time, :out_time, :slot_id, :confirm, :user_id)
   end
 
   def set_ud
-    @ud = UserDetail.find(params[:id])
+    @ud = CustomerDetail.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
-    redirect_to user_details_path
+    redirect_to customer_details_path
     flash[:notice] = e
   end
 

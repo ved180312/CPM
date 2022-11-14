@@ -1,25 +1,26 @@
-<% if @ud.errors.any? %>
-  <h2>The following errors prevented the user from being saved</h2>
-  <ul>
-  <% @ud.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %> 
-<div class="card text-white bg-secondary mb-3" style="max-width: auto">
-  <div class= "col-lg-6 mx-lg-auto" style="margin: 50px; >
-    <div class="card shadow">
-      <div class="card-header bg-striped text-white">
-        <h2 class="card-title" >Enter Details</h2>
-      </div>  
-      <div class="card-body bg-info text-white">
 
-        <%= form_with scope: :user_detail, url: user_details_path, local: true do |f| %>
+        <%= form_with scope: :customer_detail, url: customer_details_path, local: true do |f| %>
+
+          <% if @ud.errors.any? %>
+            <h2>The following errors prevented the user from being saved</h2>
+            <% @ud.errors.full_messages.each do |msg| %>
+              <p><%= msg %></p>
+            <% end %>
+          <% end %> 
+          
           <p> 
             <%= f.hidden_field :id, value: params[:id]%>
             <%= f.label :name, class: 'mb-2'  %>
             <%= f.text_field :name,Placeholder: "Enter Vailed name", value: current_user.name , class: "form-control form-control-lg" %>
           </p>
+
+          <%
+=begin%>
+ <p> 
+              <%= f.hidden_field :email ,value: current_user.email, class: "form-control form-control-lg"%>
+          </p> 
+<%
+=end%>
 
           <p> 
             <%= f.label :car_number, class: 'mb-2'  %>
@@ -30,6 +31,7 @@
             <%= f.label :car_color, class: 'mb-2'  %>
             <%= f.text_field :car_color,Placeholder: "Enter car color", autofocus: true, class: "form-control form-control-lg" %>
           </p>
+
           <p> 
             <%= f.label :in_time, class: 'mb-2'  %>
             <%= f.datetime_field :in_time, Placeholder: "Enter time", autofocus: true, class: "form-control form-control-lg"%>
@@ -39,21 +41,17 @@
             <%= f.label :out_time, class: 'mb-2'  %>
             <%= f.datetime_field :out_time,Placeholder: "Enter time", autofocus: true, class: "form-control form-control-lg"%>
           </p>
+
           <p> 
-              <%= f.hidden_field :slot_id ,value: params[:id], class: "form-control form-control-lg"%>
+              <%= f.hidden_field :slot_id ,value: params[:id] %>
+          </p>
+
+          <p> 
+              <%= f.hidden_field :user_id ,value: current_user.id %>
           </p>
           
           <p>
             <%= f.submit 'submit', class: "btn btn-primary" %> 
           </p>
+          
         <% end %>
-      </div>
-    </div>
-  </div>
-</div>  
-
-
-
-
-
-    

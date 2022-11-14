@@ -7,6 +7,8 @@
       <div  class="card-header"><strong>Floor Number: </strong><%= floor.number_of_floor %></div>
       <div class="card-body">
         <p><strong>Floor Id: </strong><%= floor.id %></p> 
+         <td><%= link_to 'Edit', edit_floor_path(floor) %></td>   
+
         <%= "This floor has #{floor.slots.count} slots"%></td> 
         <button><%= link_to 'Show', floor_path(floor) %></button></td>
       </div>
@@ -15,6 +17,7 @@
 </div>  
 <button><%= link_to 'back', root_path %></button>
 <% if current_user.admin%>
+
 <button><%= link_to 'Add Floor', new_floor_path %></button>
 <%end%>
 

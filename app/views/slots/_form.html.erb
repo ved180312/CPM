@@ -1,0 +1,23 @@
+<%= form_with scope: :slot, url: slots_path, local: true do |f| %>
+
+  <% if @slot.errors.any? %>
+    <h2>The following errors prevented the SLOT from being saved</h2>
+    <ul>
+      <% @slot.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %> 
+
+  <p> 
+    <%= f.label :slot_number, class: 'mb-2'   %><br/>
+    <%= f.number_field :slot_number, Placeholder: "Enter Slot Number", class: "form-control form-control-lg" %>
+  </p>
+  <p> 
+    <%= f.hidden_field :floor_id, value: params[:id], class: "form-control form-control-lg" %>
+  </p> 
+
+  <p>
+    <%= f.submit 'submit', class: "btn btn-primary" %> 
+  </p>
+<% end %>

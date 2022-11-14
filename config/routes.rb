@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get 'floors/view'
   # get 'user_details/index'
   # get 'user_details/show'
-  get 'user_details/new/:id', to: 'user_details#new', as: 'new_user_details'
+  get 'customer_details/new/:id', to: 'customer_details#new', as: 'new_customer_details'
   # get 'user_details/edit'
   # get 'homes/index'
 
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   root to: 'homes#index'
 
   resources :slots, except: %i[new]
-  resources :user_details, except: %i[new]
+  resources :customer_details, except: %i[new]
   resources :floors
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

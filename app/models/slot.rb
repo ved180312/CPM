@@ -2,5 +2,6 @@
 
 class Slot < ApplicationRecord
   belongs_to :floor
-  has_one :user_detail
+  has_one :customer_detail
+  validates :slot_number, presence: true
 end

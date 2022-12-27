@@ -1,0 +1,17 @@
+current directory: /home/dell/Desktop/123456789/Car/CPM/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+/home/dell/.rvm/rubies/ruby-3.0.0/bin/ruby -I /home/dell/.rvm/rubies/ruby-3.0.0/lib/ruby/3.0.0 -r ./siteconf20221227-7606-pnr7k7.rb extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/dell/Desktop/123456789/Car/CPM/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+make "DESTDIR=" clean
+
+current directory: /home/dell/Desktop/123456789/Car/CPM/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+make "DESTDIR="
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/dell/Desktop/123456789/Car/CPM/vendor/bundle/ruby/3.0.0/gems/racc-1.6.2/ext/racc/cparse
+make "DESTDIR=" install
+/usr/bin/install -m 0755 cparse.so ./.gem.20221227-7606-2md5mx/racc

@@ -28,7 +28,9 @@ class CustomerDetailsController < ApplicationController
 
   def create
     CreateCustomerDetailService.new(params[:customer_detail][:id]).call
+
     @ud = CustomerDetail.new(ud_params)
+
     if @ud.save && @ud.name == current_user.name
       UserDetailMailer.booking_confirmation(@ud, current_user, 'user').deliver_later
       flash[:notice] = 'Successfully applied'
@@ -49,7 +51,8 @@ class CustomerDetailsController < ApplicationController
   private
 
   def ud_params
-    params.require(:customer_detail).permit(:name, :car_color, :car_number, :in_time, :out_time, :slot_id, :confirm, :user_id)
+    params.require(:customer_detail).permit(:name, :car_color, :car_number, :in_time, :out_time, :slot_id, :confirm,
+                                            :user_id)
   end
 
   def set_ud

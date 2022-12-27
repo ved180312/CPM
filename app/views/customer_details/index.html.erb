@@ -23,13 +23,13 @@
             <td><%= custo.slot_id%></td>
             <td><%= custo.slot.floor_id%></td>
             <td> <%= custo.confirm.nil? ? "Pending" : "Booked"%></td>
-            <td><button><%= link_to 'Show', customer_detail_path(custo) %></button>
+            <td><%= link_to 'Show', customer_detail_path(custo), class: "btn btn-primary" %>
             <% if  current_user.admin %>
-                <td><button><%= link_to 'Delete', customer_detail_path(custo),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button></td>
+                <td><%= link_to 'Delete', customer_detail_path(custo),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary" %></td>
                 <% if custo.confirm.nil?%>
-                  <td><button><%= link_to 'PendingRequest', edit_customer_detail_path(custo.id) %></button></td>
+                  <td><%= link_to 'PendingRequest', edit_customer_detail_path(custo.id), class: "btn btn-primary" %></td>
                 <%else%>
-                  <td><button><%= link_to 'Edit', edit_customer_detail_path(custo) %></button></td>
+                  <td><%= link_to 'Edit', edit_customer_detail_path(custo), class: "btn btn-primary" %></td>
                 <%end%>
             <% end %>
           <% end %>

@@ -14,14 +14,14 @@
             <p><strong>Booking Status: </strong><%= "Empty"%></p>
           <%end%>
 
-          <%= link_to 'Show', slot_path(slot) %>
-          <%= link_to 'Delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
-          <%= link_to 'Edit', edit_slot_path(slot) %>          
+          <%= link_to 'Show', slot_path(slot), class: "btn btn-primary" %>
+          <%= link_to 'Delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary" %>
+          <%= link_to 'Edit', edit_slot_path(slot), class: "btn btn-primary" %>          
         </div>
       </div>
     <% end %>
   </div>  
-  <button><%= link_to 'back', root_path %></button>
+  <%= link_to 'back', root_path, class: "btn btn-primary m-1"%>
  
 </body>
 

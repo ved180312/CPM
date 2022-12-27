@@ -14,14 +14,6 @@
             <%= f.text_field :name,Placeholder: "Enter Vailed name", value: current_user.name , class: "form-control form-control-lg" %>
           </p>
 
-          <%
-=begin%>
- <p> 
-              <%= f.hidden_field :email ,value: current_user.email, class: "form-control form-control-lg"%>
-          </p> 
-<%
-=end%>
-
           <p> 
             <%= f.label :car_number, class: 'mb-2'  %>
             <%= f.text_field :car_number,Placeholder: "Enter car number", autofocus: true, class: "form-control form-control-lg" %>

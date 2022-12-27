@@ -12,5 +12,4 @@ class UserDetailMailer < ApplicationMailer
     email = bool == 'user' ? user.email : @ud.user.email
     mail to: email, subject: 'Regarding Booking Confirmation'
   end
-
 end

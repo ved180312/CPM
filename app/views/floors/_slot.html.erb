@@ -1,0 +1,27 @@
+
+<div class="row text-bg-light " style="max-width: auto " >
+  <% @floor.each do |slot| %>
+    <div class="card" style="margin: 2px;" >
+      <div  class="card-header"><strong>Slot Number: </strong><%= slot.slot_number%></div>
+      <div class="card-body">  
+
+        <% if slot.status && slot.customer_detail.confirm.nil? %>
+          <p><strong>Booking Status: </strong><%= "Not Available"%></p>
+        <% elsif slot.status %> 
+          <p><strong>Booking Status: </strong><%= "Booked"%></p> 
+        <%else%>
+          <p><strong>Booking Status: </strong><%= "Empty"%></p>   
+        <%end%>
+        <%= link_to 'Show', slot_path(slot), class: "btn btn-primary" %>
+        <% if current_user.admin%>
+          <%= link_to 'Delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary"%>
+          <%= link_to 'Edit', edit_slot_path(slot), class: "btn btn-primary" %>
+        <%end%>  
+        <%= link_to 'Apply', new_customer_details_path(slot.id), class: "btn btn-primary"  %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% if current_user.admin? %>
+  <%= link_to 'Add Slot', new_slot_path(params[:id]), class: "btn btn-primary m-3"  %>
+<%end%>

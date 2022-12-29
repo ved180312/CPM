@@ -10,6 +10,7 @@
       <p><strong>In Time: </strong><%= @ud.in_time.strftime('%d/%m/%Y %H:%M') %></p>
       <p><strong>Out Time: </strong><%= @ud.out_time.strftime('%d/%m/%Y %H:%M') %></p>
       <p><strong>Slot Id: </strong><%= @ud.slot_id%></p>
+      <p><strong>Slot Number: </strong><%= @ud.slot.slot_number%></p>
       <p><strong>Floor : </strong><%= @ud.slot.floor_id%></p>
       <%if @ud.confirm.nil? %>
         <p><strong>Status : </strong><%= "Pending"%><p>

@@ -5,7 +5,15 @@ class CustomerDetailsController < ApplicationController
   before_action :check_user, only: %i[destroy edit]
   before_action :set_ud, only: %i[edit update show destroy]
   def new
-    @ud = CustomerDetail.new
+    begin
+      @ud = Slot.find(params[:id])      
+      if @ud.status
+        flash[:notice] = 'Already Booked'
+        redirect_to floors_path
+      end
+    rescue => exception
+      @ud = CustomerDetail.new
+    end
   end
 
   def index
@@ -28,10 +36,9 @@ class CustomerDetailsController < ApplicationController
 
   def create
     CreateCustomerDetailService.new(params[:customer_detail][:id]).call
-
     @ud = CustomerDetail.new(ud_params)
-
-    if @ud.save && @ud.name == current_user.name
+    @ud.slot.status = true
+    if @ud.save && @ud.slot.save and @ud.name == current_user.name
       UserDetailMailer.booking_confirmation(@ud, current_user, 'user').deliver_later
       flash[:notice] = 'Successfully applied'
       redirect_to @ud
@@ -44,8 +51,11 @@ class CustomerDetailsController < ApplicationController
   end
 
   def destroy
-    @ud.destroy
-    redirect_to customer_details_path
+    @ud.slot.status = false
+    if @ud.destroy
+      @ud.slot.save
+      redirect_to customer_details_path
+    end  
   end
 
   private

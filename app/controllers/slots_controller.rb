@@ -44,7 +44,7 @@ class SlotsController < ApplicationController
   private
 
   def slot_params
-    params.require(:slot).permit(:slot_number, :floor_id)
+    params.require(:slot).permit(:slot_number, :floor_id, :status)
   end
 
   def set_slot

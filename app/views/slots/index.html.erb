@@ -8,10 +8,12 @@
           <p><strong>Slot Id: </strong><%= slot.id%></p>
           <p><strong>Floor Id: </strong><%= slot.floor_id%></p>
           
-          <% if slot.customer_detail%>
-            <p><strong>Booking Status: </strong><%= "Booked"%></p>
+          <% if slot.status && slot.customer_detail.confirm.nil? %>
+            <p><strong>Booking Status: </strong><%= "Not Available"%></p>
+          <% elsif slot.status %> 
+            <p><strong>Booking Status: </strong><%= "Booked"%></p> 
           <%else%>
-            <p><strong>Booking Status: </strong><%= "Empty"%></p>
+            <p><strong>Booking Status: </strong><%= "Empty"%></p>   
           <%end%>
 
           <%= link_to 'Show', slot_path(slot), class: "btn btn-primary" %>

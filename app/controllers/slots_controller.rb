@@ -54,10 +54,4 @@ class SlotsController < ApplicationController
     flash[:notice] = e
   end
 
-  def check_user
-    return unless current_user.admin == false
-
-    flash[:alert] = 'You cannot open this'
-    redirect_to root_path
-  end
 end

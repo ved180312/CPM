@@ -10,6 +10,7 @@ class UserDetailMailer < ApplicationMailer
   def booking_confirmation(customer_detail, user, bool)
     @ud = customer_detail
     email = bool == 'user' ? user.email : @ud.user.email
+    
     mail to: email, subject: 'Regarding Booking Confirmation'
   end
 end

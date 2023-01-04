@@ -1,4 +1,9 @@
 <body>
+<% if current_user.admin%>
+  <h3>All Bookings</h3>
+<% else %>
+  <h3>Your Booking</h3>
+<%end%>
   <table class="table table-success table-striped">
     <thead class="table-dark">
       </tr>
@@ -23,13 +28,13 @@
             <td><%= custo.slot.slot_number%></td>
             <td><%= custo.slot.floor_id%></td>
             <td> <%= custo.confirm.nil? ? "Pending" : "Booked"%></td>
-            <td><%= link_to 'Show', customer_detail_path(custo), class: "btn btn-primary" %>
+            <td><%= link_to '', customer_detail_path(custo), class: "btn btn-info fa-solid fa-eye" %>
             <% if  current_user.admin %>
-                <td><%= link_to 'Delete', customer_detail_path(custo),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary" %></td>
+                <td><%= link_to '', customer_detail_path(custo),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger fa-solid fa-trash" %></td>
                 <% if custo.confirm.nil?%>
                   <td><%= link_to 'PendingRequest', edit_customer_detail_path(custo.id), class: "btn btn-primary" %></td>
                 <%else%>
-                  <td><%= link_to 'Edit', edit_customer_detail_path(custo), class: "btn btn-primary" %></td>
+                  <td><%= link_to '', edit_customer_detail_path(custo), class: "btn btn-primary fa-solid fa-pen-to-square" %></td>
                 <%end%>
             <% end %>
           <% end %>

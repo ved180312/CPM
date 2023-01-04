@@ -1,13 +1,12 @@
-
+<h3> All Floors </h3>
 
 <div class="row text-bg-light " style="max-width: auto ">
-  <% @floor.each do |floor| %>
-  
+  <% @floor.each do |floor| %>  
     <div class="card m-3"  >
       <div  class="card-header"><strong>Floor Number: </strong><%= floor.number_of_floor %></div>
       <div class="card-body">
         <%= "This floor has #{floor.slots.count} slots"%>
-        <%= link_to 'Show', floor_path(floor), class: "btn btn-primary" %>
+        <%= link_to 'Click', floor_path(floor), class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>

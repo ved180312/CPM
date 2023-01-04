@@ -6,9 +6,13 @@
   <ul>
     <% m= @ud.out_time %>
     <% n= @ud.in_time %>
+    <% $price =  (((m-n)/1.hours).round)*100%>
     <li><strong>Slot Id: <strong><%= @ud.slot_id %></li>
     <li><strong>Floor: <strong><%= @ud.slot.floor_id%></li>
-    <li><strong>Price: <strong><%= (((m-n)/1.hours).round)*100%></li>
+    <li><strong>Total Time: <strong><%= (((m-n)/1.hours).round) %> Hours<p></li>
+    
+    <li><strong>Price: <strong><%= $price %>z</li>
+
   </ul>
 <%end%>
 

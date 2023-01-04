@@ -13,8 +13,10 @@ class FloorsController < ApplicationController
   end
 
   def show
-    # debugger
     @floor = Floor.find(params[:id]).slots
+  rescue ActiveRecord::RecordNotFound => e
+    redirect_to floors_path
+    flash[:notice] = e
   end
 
   def edit; end
@@ -58,7 +60,6 @@ class FloorsController < ApplicationController
 
   def check_user
     return unless current_user.admin == false
-
     lash[:alert] = 'You cannot open this'
     redirect_to root_path
   end

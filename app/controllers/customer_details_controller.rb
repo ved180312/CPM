@@ -4,12 +4,13 @@
 class CustomerDetailsController < ApplicationController
   before_action :check_user, only: %i[destroy edit]
   before_action :set_ud, only: %i[edit update show destroy]
+  
   def new
     begin
       @ud = Slot.find(params[:id])      
       if @ud.status
         flash[:notice] = 'Already Booked'
-        redirect_to floors_path
+        redirect_to floor_path
       end
     rescue => exception
       @ud = CustomerDetail.new
@@ -24,6 +25,20 @@ class CustomerDetailsController < ApplicationController
 
   def edit; end
 
+  def create
+    @ud = CustomerDetail.new(ud_params)
+    @ud.slot.status = true
+    $price = StripeServiceLayer.price_generator(@ud)
+    if @ud.save && @ud.slot.save and @ud.name == current_user.name
+      UserDetailMailer.booking_confirmation(@ud, current_user, 'user').deliver_later
+      flash[:notice] = 'Successfully applied. Please Check Your Mail'
+      StripeServiceLayer.slot_payment($price)
+      redirect_to @ud
+    else
+      render 'new', status: :unprocessable_entity
+    end
+  end
+
   def update
     if @ud.update(ud_params)
       UserDetailMailer.booking_confirmation(@ud, @ud, 'cust').deliver_later
@@ -32,22 +47,6 @@ class CustomerDetailsController < ApplicationController
     else
       render 'edit', status: :unprocessable_entity
     end
-  end
-
-  def create
-    CreateCustomerDetailService.new(params[:customer_detail][:id]).call
-    @ud = CustomerDetail.new(ud_params)
-    @ud.slot.status = true
-    if @ud.save && @ud.slot.save and @ud.name == current_user.name
-      UserDetailMailer.booking_confirmation(@ud, current_user, 'user').deliver_later
-      flash[:notice] = 'Successfully applied'
-      redirect_to @ud
-    else
-      render 'new', status: :unprocessable_entity
-    end
-  rescue StandardError => e
-    flash[:notice] = e.message
-    redirect_to floors_path
   end
 
   def destroy

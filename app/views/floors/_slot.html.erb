@@ -1,23 +1,28 @@
-
-<div class="row text-bg-light " style="max-width: auto " >
+<div class="row text-bg-light " style="width: auto " >
   <% @floor.each do |slot| %>
     <div class="card" style="margin: 2px;" >
       <div  class="card-header"><strong>Slot Number: </strong><%= slot.slot_number%></div>
-      <div class="card-body">  
-
+      <div class="card-body"> 
         <% if slot.status && slot.customer_detail.confirm.nil? %>
           <p><strong>Booking Status: </strong><%= "Not Available"%></p>
         <% elsif slot.status %> 
           <p><strong>Booking Status: </strong><%= "Booked"%></p> 
         <%else%>
-          <p><strong>Booking Status: </strong><%= "Empty"%></p>   
+          <p><strong>Booking Status: </strong><%= "Empty"%></p>
         <%end%>
-        <%= link_to 'Show', slot_path(slot), class: "btn btn-primary" %>
         <% if current_user.admin%>
-          <%= link_to 'Delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary"%>
-          <%= link_to 'Edit', edit_slot_path(slot), class: "btn btn-primary" %>
-        <%end%>  
-        <%= link_to 'Apply', new_customer_details_path(slot.id), class: "btn btn-primary"  %>
+          <span class="dropdown">
+            <a class=" dropdown-toggle btn btn-primary"  data-toggle="dropdown"  aria-expanded="false">
+              Action
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <p class="dropdown-item"><i class="fa-solid fa-eye mr-2"></i><%= link_to 'show', slot_path(slot) %></p>
+                <p class="dropdown-item"><i class="fa-solid fa-trash mr-2"></i><%= link_to 'delete', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+                <p class="dropdown-item"><i class="fa-solid fa-pen-to-square mr-2"></i><%= link_to 'edit', edit_slot_path(slot) %>
+            </div>
+          </span> 
+        <%end%>
+        <span><%= link_to 'Apply', new_customer_details_path(slot.id), class: "btn btn-primary m-2"  %></span>
       </div>
     </div>
   <% end %>
@@ -25,3 +30,4 @@
 <% if current_user.admin? %>
   <%= link_to 'Add Slot', new_slot_path(params[:id]), class: "btn btn-primary m-3"  %>
 <%end%>
+

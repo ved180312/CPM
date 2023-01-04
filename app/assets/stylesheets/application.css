@@ -22,3 +22,15 @@
   a, p{
     font-size: 15px;
   }
+  .main{
+    background: url("carparking.jpeg")no-repeat;
+    background-size: cover;
+    min-height: 95vh;
+    width: 100%;
+  }
+  .main2{
+    background: url("pic.jpg")no-repeat;
+    background-size: cover;
+    min-height: 95vh;
+    width: 100%;
+  }

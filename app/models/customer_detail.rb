@@ -16,5 +16,3 @@ class CustomerDetail < ApplicationRecord
   validates :car_number, uniqueness: true, presence: true,
                          format: { with: /\A([A-Z]{2})+[0-9]{2}+[A-Z]{2}+[0-9]{4}\z/i }
 end
-
-# validates_comparison_of :in_time, greater_than: Time.now.strftime()

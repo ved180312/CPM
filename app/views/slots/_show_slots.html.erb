@@ -1,0 +1,38 @@
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <%= link_to 'All', slots_path, class: "btn btn-primary m-1" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Booked', booked_slot_slots_path, class: "btn btn-primary m-1" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Empty', empty_slot_slots_path, class: "btn btn-primary m-1" %>
+  </li>
+</ul>  
+
+<div class="row">
+  <% @slot.each do |slot| %>
+    <div class="col-sm-4 m-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><p><strong>Slot Number: </strong><%= slot.slot_number%></p></h5>
+            <p><strong>Slot Id: </strong><%= slot.id%></p>
+            <p><strong>Floor Id: </strong><%= slot.floor_id%></p>
+            
+            <% if slot.status && slot.customer_detail.confirm.nil? %>
+              <p><strong>Booking Status: </strong><%= "Not Available"%></p>
+            <% elsif slot.status %> 
+              <p><strong>Booking Status: </strong><%= "Booked"%></p> 
+            <%else%>
+              <p><strong>Booking Status: </strong><%= "Empty"%></p>   
+            <%end%>
+
+            <%= link_to '', slot_path(slot), class: "btn btn-info fa-solid fa-eye" %>
+            <%= link_to '', slot_path(slot),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger fa-solid fa-trash" %>
+            <%= link_to '', edit_slot_path(slot), class: "btn btn-primary fa-solid fa-pen-to-square" %> 
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= link_to 'back', root_path, class: "btn btn-primary m-1"%>

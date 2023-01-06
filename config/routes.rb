@@ -1,34 +1,34 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # get 'slots/index'
-  # get 'slots/edit'
-  get 'slots/new/:id', to: 'slots#new', as: 'new_slot'
-  # get 'slots/show'
-  # get 'floors/index'
-  # get 'floors/new'
-  # get 'floors/edit'
-  # get 'floors/view'
-  # get 'user_details/index'
-  # get 'user_details/show'
+
   get 'customer_details/new/:id', to: 'customer_details#new', as: 'new_customer_details'
-  # get 'user_details/edit'
   get 'homes/hello'
   get 'homes/cpm'
-
+  root to: 'homes#index'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
+  
+  get 'slots/new/:id', to: 'slots#new', as: 'new_slot'
+  
+  resources :slots do
+    collection do
+      get 'booked_slot', to: 'slots#booked_slot'
+      get 'empty_slot' => 'slots#empty_slot'
+    end
 
-  root to: 'homes#index'
+    # member do
+    #   get 'new/:id', to: 'slots#new', as: 'new_slot'
+    # end
+  end
 
-  resources :slots, except: %i[new]
   resources :customer_details, except: %i[new]
-  resources :floors
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :floors do
+  end
+  get 'floors/booked_floor/:id' => 'floors#booked_floor', as: 'booked_floor_slots'
+  get 'floors/empty_floor/:id' => 'floors#empty_floor', as: 'empty_floor_slots'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

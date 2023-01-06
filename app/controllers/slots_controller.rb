@@ -9,7 +9,6 @@ class SlotsController < ApplicationController
   end
 
   def index
-    # debugger
     @slot = Slot.all
   end
 

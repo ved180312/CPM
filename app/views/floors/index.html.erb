@@ -6,7 +6,11 @@
       <div  class="card-header"><strong>Floor Number: </strong><%= floor.number_of_floor %></div>
       <div class="card-body">
         <%= "This floor has #{floor.slots.count} slots"%>
-        <%= link_to 'Click', floor_path(floor), class: "btn btn-primary" %>
+        <%if !current_user.admin %>
+          <%= link_to 'Click', empty_floor_slots_path(floor), class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to 'Click', floor_path(floor), class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   <% end %>

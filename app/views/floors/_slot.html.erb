@@ -1,15 +1,18 @@
 <h3> All Slots</h3>  
 
- <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <%= link_to 'All', floor_path, class: "btn btn-primary m-1" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Available For Booking', empty_floor_slots_path, class: "btn btn-primary m-1" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Booked', booked_floor_slots_path, class: "btn btn-primary m-1" %>
-    </li>
+  <ul class="nav justify-content-center">
+    <% if current_user.admin? %>
+        <li class="nav-item">
+          <%= link_to 'All', floor_path, class: "btn btn-primary m-1" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Booked', booked_floor_slots_path, class: "btn btn-primary m-1" %>
+        </li>
+    <% else %>
+        <li class="nav-item">
+          <%= link_to 'Available For Booking', empty_floor_slots_path, class: "btn btn-primary m-1" %>
+        </li>
+    <% end %>
   </ul>  
 
 <div class="row text-bg-light " style="width: auto " >

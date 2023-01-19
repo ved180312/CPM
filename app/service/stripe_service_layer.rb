@@ -12,6 +12,8 @@ module StripeServiceLayer
             $price = 100
         end
         return $price
+    rescue NoMethodError => e
+        # flash[:notice] = e
     end
 
     def slot_payment(price)

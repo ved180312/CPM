@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 # usermodel
+require 'csv'
+
 class CustomerDetail < ApplicationRecord
   belongs_to :slot
   belongs_to :user
@@ -22,4 +24,16 @@ class CustomerDetail < ApplicationRecord
                          format: { with: /\A([A-Z]{2})+[0-9]{2}+[A-Z]{2}+[0-9]{4}\z/i }
 
 
+  def to_csv(current_user)
+    # @email = current_user.email
+      column_names = %w[name car_color email in_time out_time car_number]
+      CSV.generate do |csv|
+        csv << column_names
+        # csv << attributes.values_at(*column_names)
+
+        row = attributes.values_at(*column_names)
+        row[column_names.index('email')] = current_user.email
+        csv << row
+      end
+  end
 end

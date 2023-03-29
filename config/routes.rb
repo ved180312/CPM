@@ -3,6 +3,7 @@
 Rails.application.routes.draw do
 
   get 'customer_details/new/:id', to: 'customer_details#new', as: 'new_customer_details'
+  get 'customer_details/:id/download', to: 'customer_details#download', as: 'download'
   get 'homes/hello'
   get 'homes/cpm'
   root to: 'homes#index'

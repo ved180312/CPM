@@ -17,8 +17,10 @@
   </head>
 
   <body>
+  
     <%= render "shaerd/header" %>
     <% flash.each do |type, msg| %>
+
     <% end %>
 
     <% if user_signed_in? %>
@@ -30,10 +32,13 @@
       Logged in as <strong><%= current_user.email %></strong>.
     <% end %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <div class="container">
+   <% if notice %>
+     <p class="alert alert-warning alert-dismissible fadeshow data-toggle="modal" " style="position: absolute; left: 50%; transform: translate(-50%); display: inline-block; z-index: 1;"><%= notice %></p>
+   <%end%>
+   <% if alert %>
+    <p class="alert alert-warning alert-dismissible fadeshow data-toggle="modal" " style="position: absolute; left: 50%; transform: translate(-50%); display: inline-block; z-index: 1;"><%= alert %></p>
+   <% end %>
+    <div class="p-3">
     <%= yield %>
     </div>
   </body>

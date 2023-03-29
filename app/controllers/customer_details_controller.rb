@@ -57,6 +57,14 @@ class CustomerDetailsController < ApplicationController
     end  
   end
 
+  def download
+    @ud = CustomerDetail.find(params[:id])
+    
+    respond_to do |format|
+      format.csv { send_data @ud.to_csv(current_user), filename: "#{@ud.name}-#{Date.today}.csv" }
+    end
+  end
+
   private
 
   def ud_params

@@ -20,5 +20,6 @@ module ProjectParking
     #
     # config.time_zone = "Central Time (US & Canada)"
     config.eager_load_paths << Rails.root.join('app/service')
+    config.autoload_paths += Dir["#{config.root}/app/models/**/"]
   end
 end

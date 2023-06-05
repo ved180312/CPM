@@ -23,14 +23,18 @@
 
     <% end %>
 
-    <% if user_signed_in? %>
+    <%
+=begin%>
+ <% if user_signed_in? %>
       <% if !current_user.admin %>
       <strong><%='Client Loging'%></strong>
       <%else%>
         <strong><%='User Loging'%></strong>
       <%end%></br>
       Logged in as <strong><%= current_user.email %></strong>.
-    <% end %>
+    <% end %> 
+<%
+=end%>
 
    <% if notice %>
      <p class="alert alert-warning alert-dismissible fadeshow data-toggle="modal" " style="position: absolute; left: 50%; transform: translate(-50%); display: inline-block; z-index: 1;"><%= notice %></p>

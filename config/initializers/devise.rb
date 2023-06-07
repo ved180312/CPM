@@ -31,7 +31,7 @@ Devise.setup do |config|
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
-
+  
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
@@ -272,6 +272,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :google_oauth2, '998555917160-nab79ef21sb2jhfgjlj38sfqdnh2sme7.apps.googleusercontent.com', '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'
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

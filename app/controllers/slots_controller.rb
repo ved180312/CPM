@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# class
 class SlotsController < ApplicationController
   before_action :check_user, only: %i[destroy edit new]
   before_action :set_slot, only: %i[edit update show destroy]
+
   def new
     @slot = Slot.new
   end
@@ -17,26 +17,33 @@ class SlotsController < ApplicationController
   def edit; end
 
   def update
-    if @slot.update(slot_params)
+    result = Slots::UpdateSlotService.new(@slot, slot_params).call
+    if result[:success]
       flash[:notice] = 'Slot Successfully Updated'
       redirect_to @slot
     else
+      flash[:alert] = result[:errors].full_messages.join(', ')
       render 'edit', status: :unprocessable_entity
     end
   end
 
   def create
-    @slot = Slot.new(slot_params)
-    if @slot.save
+    result = Slots::CreateSlotService.new(slot_params).call
+    if result[:success]
       flash[:notice] = 'Slot Successfully Created.'
-      redirect_to @slot
+      redirect_to result[:floor]
     else
+      flash[:alert] = result[:errors].full_messages.join(', ')
       render 'new', status: :unprocessable_entity
     end
   end
 
   def destroy
-    @slot.destroy
+    if @slot.destroy
+      flash[:notice] = 'Slot Successfully Deleted'
+    else
+      flash[:alert] = 'Failed to Delete Slot'
+    end
     redirect_to slots_path
   end
 
@@ -49,8 +56,7 @@ class SlotsController < ApplicationController
   def set_slot
     @slot = Slot.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
+    flash[:alert] = 'Slot not found'
     redirect_to slots_path
-    flash[:notice] = e
   end
-
 end

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :slots do
     collection do
       get 'booked_slot', to: 'slots#booked_slot'
-      get 'empty_slot' => 'slots#empty_slot'
+      get 'empty_slot', to: 'slots#empty_slot'
     end
 
     # member do

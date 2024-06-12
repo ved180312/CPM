@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class HomesController < ApplicationController
-  before_action :authenticate_user!
 
   def index; end
 
@@ -12,5 +11,4 @@ class HomesController < ApplicationController
   def cpm
     @user = User.all
   end
-
 end

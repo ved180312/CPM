@@ -2,7 +2,7 @@
 
 class FloorsController < ApplicationController
   before_action :check_user, only: %i[new edit update destroy]
-  before_action :set_floor, only: %i[edit update destroy]
+  before_action :set_floor, only: %i[edit update destroy show]
 
   def new
     @floor = Floor.new
@@ -13,10 +13,7 @@ class FloorsController < ApplicationController
   end
 
   def show
-    @floor = Floor.find(params[:id]).slots
-  rescue ActiveRecord::RecordNotFound => e
-    redirect_to floors_path
-    flash[:notice] = e
+    @floor = @floor.slots
   end
 
   def edit; end
@@ -41,7 +38,11 @@ class FloorsController < ApplicationController
   end
 
   def destroy
-    @floor.destroy
+    if @floor.destroy
+      flash[:notice] = 'Floor successfully deleted'
+    else
+      flash[:alert] = 'Failed to delete floor'
+    end
     redirect_to floors_path
   end
 
@@ -52,10 +53,10 @@ class FloorsController < ApplicationController
   end
 
   def set_floor
-    @floor = Floor.find(params[:id])
-  rescue ActiveRecord::RecordNotFound => e
-    redirect_to floors_path
-    flash[:notice] = e
+    @floor = Floor.find_by(id: params[:id])
+    unless @floor
+      flash[:alert] = 'Floor not found'
+      redirect_to floors_path
+    end
   end
-
 end
